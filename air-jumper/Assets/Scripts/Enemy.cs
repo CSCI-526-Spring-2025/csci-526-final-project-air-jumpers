@@ -39,10 +39,7 @@ public class Enemy : MonoBehaviour
         Patrol();
         UpdateHealthBar();
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage(30f);
-        }
+    
     }
 
 
