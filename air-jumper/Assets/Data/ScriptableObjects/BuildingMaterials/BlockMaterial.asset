@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialName: Block
   prefab: {fileID: 1924946161209660251, guid: cee7922bc50f7c94e9331173751edf69, type: 3}
-  snapSize: {x: 1, y: 1}
+  snapSize: {x: 2, y: 1}
