@@ -1,18 +1,123 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float moveSpeed = 5f;
+    public float jumpForce = 1f;
+    public GameObject platformPrefab; 
+    public TextMeshProUGUI platformCounterText;
+    private Rigidbody2D rb;
+    private int platformCount = 10; 
+    private bool isGrounded = false;
+    private bool isOnPlatform = false;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        UpdatePlatformCounter();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        MovePlayer();
+        Jump();
+        if (Input.GetKeyDown(KeyCode.B) && !isGrounded && !isOnPlatform && platformCount > 0)
+        {
+            SpawnPlatform();
+        }
+    }
+
+    void MovePlayer()
+    {
+        float move = 0f;
+        if (Input.GetKey(KeyCode.A))
+        {
+            move = -1f;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            move = 1f;
+        }
+        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+    }
+
+    void Jump()
+    {
+        if ((isGrounded || isOnPlatform) &&Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+    }
+
+    void SpawnPlatform()
+    {
+        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 1.2f, 0);
+        Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        platformCount--;
+        UpdatePlatformCounter();
+        if (platformCount == 0)
+        {
+            FindObjectOfType<GameOverManager>().StartGameOverTimer();
+        }
+
+    }
+
+    void UpdatePlatformCounter()
+    {
+        if (platformCounterText != null)
+        {
+            platformCounterText.text = "Platforms: " + platformCount;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+        else if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnPlatform = true;
+        }
+
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+        else if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnPlatform = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("WinFlag"))
+        {
+            WinGame();
+        }
+
+        if (collision.CompareTag("PowerUp"))
+        {
+            Debug.Log("Triggered");
+
+            platformCount += 10;
+            UpdatePlatformCounter();
+            Destroy(collision.gameObject);
+            FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+        }
+    }
+
+    private void WinGame()
+    {
+        //Stop the timer and show a win message
+        FindObjectOfType<GameOverManager>().StopTimer();
+        Debug.Log("You Win!");
     }
 }
