@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private int platformCount = 10; 
     private bool isGrounded = false;
     private bool isOnPlatform = false;
+    private bool facingRight = true;
 
     void Start()
     {
@@ -40,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
             move = 1f;
         }
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+
+        if (move > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (move < 0 && facingRight)
+        {
+            Flip();
+        }
     }
 
     void Jump()
@@ -49,6 +59,16 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+    void Flip()
+    {
+        facingRight = !facingRight;
+        PlayerAttack attack = GetComponent<PlayerAttack>();
+        if (attack != null)
+        {
+            attack.FlipAttackPoint();
+        }
+    }
+
 
     void SpawnPlatform()
     {
