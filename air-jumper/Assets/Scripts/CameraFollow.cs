@@ -19,10 +19,10 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-       // StartCoroutine(StartZoomEffect());
+        // StartCoroutine(StartZoomEffect());
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (playerManager != null)
         {

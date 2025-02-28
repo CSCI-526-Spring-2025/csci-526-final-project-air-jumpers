@@ -15,34 +15,3 @@ public abstract class CollectibleScriptable : ScriptableObject
 
     public abstract void ApplyEffect(GameObject player);
 }
-
-
-[CreateAssetMenu(menuName = "Collectibles/SkillCollectible")]
-public class SkillCollectibleScriptable : CollectibleScriptable
-{
-    private void OnEnable()
-    {
-        type = CollectibleCategory.Skill;
-    }
-
-    public override void ApplyEffect(GameObject player)
-    {
-
-    }
-}
-
-[CreateAssetMenu(menuName = "Collectibles/BuildingMaterialCollectible")]
-public class BuildingMaterialCollectibleScriptable : CollectibleScriptable
-{
-    public BuildingMaterialScriptable buildingMaterialData;
-
-    private void OnEnable()
-    {
-        type = CollectibleCategory.BuildingMaterial;
-    }
-
-    public override void ApplyEffect(GameObject player)
-    {
-
-    }
-}

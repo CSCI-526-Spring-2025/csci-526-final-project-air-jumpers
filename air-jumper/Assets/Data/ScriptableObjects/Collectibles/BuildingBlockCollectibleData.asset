@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: BuildingBlockCollectible
-  m_EditorClassIdentifier: Assembly-CSharp::BuildingMaterialCollectibleScriptable
+  m_Script: {fileID: 11500000, guid: ea2fd2912f742014d883a0d06331a4b0, type: 3}
+  m_Name: BuildingBlockCollectibleData
+  m_EditorClassIdentifier: 
   type: 1
   prefab: {fileID: 7336038137451216312, guid: ab38100cdf5913a439b4e071a9cb010d, type: 3}
   buildingMaterialData: {fileID: 11400000, guid: 9be774619f0e3be4cadfcf53c48b21e4, type: 2}
