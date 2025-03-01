@@ -89,6 +89,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        CollectibleSpawner.Instance.SpawnCollectible(CollectibleType.b_BlockCollectible, transform.position);
+
         Destroy(gameObject);
     }
 }

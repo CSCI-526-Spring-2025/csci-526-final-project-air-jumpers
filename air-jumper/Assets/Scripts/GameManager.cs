@@ -21,12 +21,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public CollectibleSpawner collectibleSpawner;
-
     private void Start()
     {
-        // for collectible testing
-        collectibleSpawner.SpawnCollectible(CollectibleType.b_BlockCollectible, new Vector3(-1, -18, 0));
+        
     }
 
     private void OnDestroy()

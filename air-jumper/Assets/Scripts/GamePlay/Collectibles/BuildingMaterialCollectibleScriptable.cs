@@ -15,6 +15,6 @@ public class BuildingMaterialCollectibleScriptable : CollectibleScriptable
     public override void ApplyEffect(GameObject player)
     {
         BuildingInventoryManager buildingInventoryManager = BuildingInventoryManager.Instance;
-        buildingInventoryManager.AddBuildingMaterial(buildingMaterialData);
+        buildingInventoryManager.AddBuildingMaterial(buildingMaterialData, amount);
     }
 }
