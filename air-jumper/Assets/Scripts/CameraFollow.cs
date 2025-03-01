@@ -8,8 +8,8 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2, -10);
 
     public Camera mainCamera;
-    public float zoomOutSize = 15f;
-    public float zoomInSize = 5f;
+    public float zoomOutSize = 20f;
+    public float zoomInSize = 10f;
     public float zoomDuration = 3f;
     public float zoomSpeed = 1f;
     public float zoomSpeedStart = 1f;
@@ -19,10 +19,10 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-       // StartCoroutine(StartZoomEffect());
+        // StartCoroutine(StartZoomEffect());
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (playerManager != null)
         {
