@@ -16,6 +16,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     public BuildingMaterialScriptable materialData;
 
     private GameObject buildingBlock;
+    private GameObject blockInstance;
 
     private RectTransform canvasRect;
 
@@ -53,7 +54,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     {
         buildingBlock = new GameObject("BuildingMaterial");
 
-        GameObject blockInstance = Instantiate(materialData.prefab, buildingBlock.transform, false);
+        blockInstance = Instantiate(materialData.prefab, buildingBlock.transform, false);
         blockInstance.tag = "Platform";
 
         if (player != null)
@@ -82,10 +83,15 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
             BuildingInventoryManager.Instance.TryUsingMaterial(materialData, 1);
             if (player != null)
             {
-                Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), buildingBlock.GetComponentInChildren<Collider2D>(), false);
+                Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), blockInstance.GetComponent<Collider2D>(), false);
             }
 
-            SpriteRenderer renderer = buildingBlock.GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer renderer = blockInstance.GetComponent<SpriteRenderer>();
+            
+            BuildingMaterialCanceler canceler = blockInstance.AddComponent<BuildingMaterialCanceler>();
+            canceler.materialInstance = buildingBlock;
+            canceler.materialData = materialData;
+
             if (renderer != null)
             {
                 renderer.sortingOrder = 0;
