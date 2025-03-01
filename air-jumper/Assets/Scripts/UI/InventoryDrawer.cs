@@ -23,6 +23,7 @@ public class InventoryDrawer : MonoBehaviour
 
     private void OnMaterialUpdatedListener(BuildingMaterialScriptable material, int newCount)
     {
+
         GridLayoutGroup grid = panel.GetComponent<GridLayoutGroup>();
         if (grid != null)
         {
@@ -31,6 +32,7 @@ public class InventoryDrawer : MonoBehaviour
                 GameObject uiObject = uiCollection[material];
                 if (newCount == 0)
                 {
+                    uiCollection.Remove(material);
                     Destroy(uiObject);
                 }
                 else
