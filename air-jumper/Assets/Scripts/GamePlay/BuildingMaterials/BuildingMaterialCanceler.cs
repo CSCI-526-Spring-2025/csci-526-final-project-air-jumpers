@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BuildingMaterialCanceler : MonoBehaviour
 {
+    public bool cancalable = true;
+
     public GameObject canvas;
     public GameObject redoButton;
 
@@ -81,6 +83,11 @@ public class BuildingMaterialCanceler : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (!cancalable)
+        {
+            return;
+        }
+
         CreateButton();
     }
 

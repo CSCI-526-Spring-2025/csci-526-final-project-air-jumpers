@@ -100,6 +100,13 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("Platform"))
         {
             isOnPlatform = true;
+
+            BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
+            if (canceler != null)
+            {
+                // Once the created platform is reached, it cannot be redo
+                canceler.cancalable = false;
+            }
         }
 
     }
