@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnPlatform = false;
     private bool facingRight = true;
 
+    private int jumpTimes = 1;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -54,9 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if ((isGrounded || isOnPlatform) &&Input.GetKeyDown(KeyCode.Space))
+        if ((isGrounded || isOnPlatform || (jumpTimes > 0)) && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpTimes -= 1;
         }
     }
     void Flip()
@@ -91,22 +94,42 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void CheckContactWithPlayerBuiltPlatforms(Collision2D collision)
+    {
+        BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
+        if (canceler != null)
+        {
+            bool reached = true;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (Vector2.Angle(Vector2.up, contact.normal) > 45)
+                {
+                    reached = false;
+                }
+            }
+
+            if (reached)
+            {
+                // Once the created platform is reached, it cannot be redo
+                canceler.cancalable = false;
+                jumpTimes = 2;
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            jumpTimes = 1;
         }
         else if (collision.gameObject.CompareTag("Platform"))
         {
             isOnPlatform = true;
+            jumpTimes = 1;
 
-            BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
-            if (canceler != null)
-            {
-                // Once the created platform is reached, it cannot be redo
-                canceler.cancalable = false;
-            }
+            CheckContactWithPlayerBuiltPlatforms(collision);
         }
 
     }
