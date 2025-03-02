@@ -935,7 +935,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321113681}
-  - component: {fileID: 1321113680}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -943,18 +942,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1321113680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321113679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca531261d3228049914cfa977041e67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1321113681
 Transform:
   m_ObjectHideFlags: 0
@@ -1674,6 +1661,7 @@ GameObject:
   - component: {fileID: 2063767278}
   - component: {fileID: 2063767279}
   - component: {fileID: 2063767280}
+  - component: {fileID: 2063767281}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1860,6 +1848,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackEffect: {fileID: 909232095}
+--- !u!114 &2063767281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063767274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4371fba3e90e54f53b65cfaf6c45484f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/3/d/1Eb7FAeByDQ3fNlJ3Vxh4Uw3MyU7bXRh6T6YHr671V2s/formResponse
 --- !u!114 &2123011012 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1285545768489824264, guid: e4f66ee9e54cf44d28870447ee1d6224, type: 3}
