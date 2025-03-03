@@ -154,10 +154,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1410076978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -165.49, y: 134.05}
-  m_SizeDelta: {x: 205.02, y: 29.91}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 113.00998, y: -29.950012}
+  m_SizeDelta: {x: 178.02, y: 29.910004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &110802802
 MonoBehaviour:
@@ -563,10 +563,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -864,7 +864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca531261d3228049914cfa977041e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectibleSpawner: {fileID: 1012799251}
 --- !u!4 &1321113681
 Transform:
   m_ObjectHideFlags: 0
@@ -1031,7 +1030,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 668.39, y: -375.96997}
-  m_SizeDelta: {x: -1336.78, y: -751.94}
+  m_SizeDelta: {x: -1336.8, y: -751.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410076979
 MonoBehaviour:
@@ -1790,9 +1789,7 @@ SceneRoots:
   - {fileID: 819520930}
   - {fileID: 1064580289}
   - {fileID: 1321113681}
-  - {fileID: 248965126}
   - {fileID: 977143980}
-  - {fileID: 460090707}
   - {fileID: 460090707}
   - {fileID: 785246867}
   - {fileID: 1492827890}
