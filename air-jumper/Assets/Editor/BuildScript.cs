@@ -22,20 +22,27 @@ public class BuildScript
             return;
         }
 
-        string currentVersion = PlayerSettings.bundleVersion;
-        string newVersion = BumpVersion(currentVersion);
-        PlayerSettings.bundleVersion = newVersion;
-
-        RunGitCommand("pull origin main");
-        RunGitCommand($"tag {tagPrefix}-{newVersion}");
         RunGitCommand("checkout build");
         RunGitCommand("pull origin build");
+        string currentVersion = PlayerSettings.bundleVersion;
+        string newVersion = BumpVersion(currentVersion);
+
+        RunGitCommand("checkout main");
+        RunGitCommand("pull origin main");
+        RunGitCommand($"tag {tagPrefix}-{newVersion}");
+        RunGitCommand("push origin HEAD");
+        RunGitCommand("push origin --tags");
+
+        RunGitCommand("checkout build");
         RunGitCommand("merge main --no-edit");
+
+        PlayerSettings.bundleVersion = newVersion;
+        AssetDatabase.SaveAssets();
 
         BuildWebGL(repoRoot);
 
         RunGitCommand("add .");
-        RunGitCommand($"commit -m \"Bump version to {newVersion}\"");
+        RunGitCommand($"commit -m \"Build version {tagPrefix}-{newVersion}\"");
         RunGitCommand($"tag {tagPrefix}-{newVersion}-build");
         RunGitCommand("push origin HEAD");
         RunGitCommand("push origin --tags");
