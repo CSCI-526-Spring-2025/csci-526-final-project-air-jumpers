@@ -24,6 +24,8 @@ public class BuildScript
 
         RunGitCommand("checkout build");
         RunGitCommand("pull origin build");
+
+        AssetDatabase.Refresh();
         string currentVersion = PlayerSettings.bundleVersion;
         string newVersion = BumpVersion(currentVersion);
 
