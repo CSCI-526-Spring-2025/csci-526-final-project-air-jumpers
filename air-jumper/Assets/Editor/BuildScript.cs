@@ -27,7 +27,7 @@ public class BuildScript
         RunGitCommand("pull origin main");
         RunGitCommand($"tag {tagPrefix}-{newVersion}");
         RunGitCommand("checkout build");
-        RunGitCommand("merge main");
+        RunGitCommand("merge main --no-edit");
 
         BuildWebGL();
 
