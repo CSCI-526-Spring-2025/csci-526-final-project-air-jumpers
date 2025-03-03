@@ -9,6 +9,8 @@ public class BuildScript
 {
     public static string tagPrefix = "alpha";
 
+    private static string repoRoot = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName;
+
     [MenuItem("Tools/Build And Push")]
     public static void BuildAndTag()
     {
@@ -30,7 +32,7 @@ public class BuildScript
         RunGitCommand("pull origin build");
         RunGitCommand("merge main --no-edit");
 
-        BuildWebGL();
+        BuildWebGL(repoRoot);
 
         RunGitCommand("add .");
         RunGitCommand($"commit -m \"Bump version to {newVersion}\"");
@@ -39,14 +41,15 @@ public class BuildScript
         RunGitCommand("push origin --tags");
     }
 
-    private static void BuildWebGL()
+
+    private static void BuildWebGL(string outputPath)
     {
         string[] scenes = EditorBuildSettings.scenes
                                 .Where(s => s.enabled)
                                 .Select(s => s.path)
                                 .ToArray();
         // root dir
-        string outputPath = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName;
+        
 
         if (!Directory.Exists(outputPath))
         {
@@ -89,7 +92,7 @@ public class BuildScript
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
-            WorkingDirectory = Directory.GetParent(Application.dataPath).FullName
+            WorkingDirectory = repoRoot
         };
         using (Process process = Process.Start(psi))
         {
@@ -108,7 +111,7 @@ public class BuildScript
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
-            WorkingDirectory = Directory.GetParent(Application.dataPath).FullName
+            WorkingDirectory = repoRoot
         };
         using (Process process = Process.Start(psi))
         {
