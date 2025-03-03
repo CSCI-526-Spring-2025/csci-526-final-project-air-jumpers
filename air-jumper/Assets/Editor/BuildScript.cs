@@ -27,6 +27,7 @@ public class BuildScript
         RunGitCommand("pull origin main");
         RunGitCommand($"tag {tagPrefix}-{newVersion}");
         RunGitCommand("checkout build");
+        RunGitCommand("pull origin build");
         RunGitCommand("merge main --no-edit");
 
         BuildWebGL();
@@ -44,7 +45,8 @@ public class BuildScript
                                 .Where(s => s.enabled)
                                 .Select(s => s.path)
                                 .ToArray();
-        string outputPath = Path.Combine("Build");
+        // root dir
+        string outputPath = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName;
 
         if (!Directory.Exists(outputPath))
         {
