@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject platformPrefab; 
     public TextMeshProUGUI platformCounterText;
     private Rigidbody2D rb;
-    private int platformCount = 10; 
+    private int platformCount = 1; 
     private bool isGrounded = false;
     private bool isOnPlatform = false;
     private bool facingRight = true;
@@ -157,11 +157,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Triggered");
 
-            platformCount += 10;
-            UpdatePlatformCounter();
+            
             Destroy(collision.gameObject);
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
         }
+    }
+
+    public void AddPlatform(int count)
+    {
+        platformCount += count;
+        UpdatePlatformCounter();
     }
 
     private void WinGame()

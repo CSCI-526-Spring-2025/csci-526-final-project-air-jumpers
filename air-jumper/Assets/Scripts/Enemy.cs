@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     public Transform healthBarCanvas;
     public Vector3 healthBarOffset = new Vector3(0, 1f, 0);
 
+    [Header("Collectible")]
+    public CollectibleType collectibleType = CollectibleType.s_PlatformCollectible;
+
     private Vector3 startPos;
 
     void Start()
@@ -32,14 +35,17 @@ public class Enemy : MonoBehaviour
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
         }
+
+        if (collectibleType == CollectibleType.b_BlockCollectible)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        }
     }
 
     void Update()
     {
         Patrol();
         UpdateHealthBar();
-
-    
     }
 
 
@@ -89,7 +95,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        CollectibleSpawner.Instance.SpawnCollectible(CollectibleType.b_BlockCollectible, transform.position);
+        CollectibleSpawner.Instance.SpawnCollectible(collectibleType, transform.position);
 
         Destroy(gameObject);
     }
