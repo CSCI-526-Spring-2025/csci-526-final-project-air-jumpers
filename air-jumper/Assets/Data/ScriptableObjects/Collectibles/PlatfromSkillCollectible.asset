@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27da37bb3b41084ab4d37e7232e7aae, type: 3}
   m_Name: PlatfromSkillCollectible
   m_EditorClassIdentifier: 
-  type: 0
+  category: 0
   prefab: {fileID: 358340930222165731, guid: 8b52b39845cd4c6459e787ef9b7258e8, type: 3}
-  amount: 3
+  amount: 5
+  collectibleType: 1

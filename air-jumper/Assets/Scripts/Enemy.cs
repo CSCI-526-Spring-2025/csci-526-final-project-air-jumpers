@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Patrol Settings")]
     public float moveSpeed = 2f;
-    public float patrolRange = 5f; 
+    public float patrolRange = 5f;
     private float leftLimit, rightLimit;
     private int direction = 1;
 
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void Flip()
     {
-        direction *= -1; 
+        direction *= -1;
     }
 
 
@@ -87,9 +87,9 @@ public class Enemy : MonoBehaviour
 
         if (healthBarCanvas != null)
         {
-        
+
             healthBarCanvas.position = transform.position + healthBarOffset;
-            healthBarCanvas.rotation = Camera.main.transform.rotation; 
+            healthBarCanvas.rotation = Camera.main.transform.rotation;
         }
     }
 
@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(40f);
+                playerHealth.TakeDamage(30f);
             }
         }
     }
