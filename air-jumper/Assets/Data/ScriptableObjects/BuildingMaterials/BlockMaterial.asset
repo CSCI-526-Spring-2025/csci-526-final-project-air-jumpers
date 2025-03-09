@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialName: Block
   prefab: {fileID: 1924946161209660251, guid: cee7922bc50f7c94e9331173751edf69, type: 3}
+  description: Able to do double jump on the created platform
   snapSize: {x: 2, y: 1}

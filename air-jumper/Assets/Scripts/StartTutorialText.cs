@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class KeyHintSprite : MonoBehaviour
 {
-    public GameObject keyHints; // °´¼üÌáÊ¾µÄ GameObject ¸¸¶ÔÏó
+    public GameObject keyHints; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ GameObject ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     void Start()
     {
-        // 5 ÃëºóÒþ²Ø
+        // 5 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Invoke("HideHints", 7f);
     }
 

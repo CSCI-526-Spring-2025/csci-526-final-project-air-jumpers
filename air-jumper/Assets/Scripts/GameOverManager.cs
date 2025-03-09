@@ -48,19 +48,19 @@ public class GameOverManager : MonoBehaviour
     }
 
     public void StopTimer()
-{
+    {
         winText.gameObject.SetActive(true);
 
-    if (isGameOverTimerRunning)
-    {
+        if (isGameOverTimerRunning)
+        {
 
-        isGameOverTimerRunning = false;
-        CancelInvoke("GameOver");
-        CancelInvoke("UpdateCountdownDisplay");
-        countdownText.gameObject.SetActive(false);
-        winText.text = "You Win!";
+            isGameOverTimerRunning = false;
+            CancelInvoke("GameOver");
+            CancelInvoke("UpdateCountdownDisplay");
+            countdownText.gameObject.SetActive(false);
+            winText.text = "You Win!";
 
+        }
     }
-}
 
 }
