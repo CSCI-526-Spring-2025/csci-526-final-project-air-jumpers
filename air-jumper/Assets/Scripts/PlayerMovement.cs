@@ -168,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
     {
         platformCount += count;
         UpdatePlatformCounter();
+        FindObjectOfType<GameOverManager>().CancelGameOverTimer();
     }
 
     private void WinGame()

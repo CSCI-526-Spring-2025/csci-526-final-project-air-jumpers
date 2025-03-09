@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: patrolRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -367,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: patrolRange
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
@@ -1595,8 +1603,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 725635433}
   - {fileID: 232251946}
+  - {fileID: 725635433}
   m_Father: {fileID: 785246867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2018,6 +2026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialImage: {fileID: 1363715488}
+  currentLevel: {fileID: 713720925}
 --- !u!4 &1775907488
 Transform:
   m_ObjectHideFlags: 0
@@ -2429,7 +2438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3768804834681147898, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_LocalPosition.x

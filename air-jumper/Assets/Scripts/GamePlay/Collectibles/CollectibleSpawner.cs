@@ -33,7 +33,7 @@ public class CollectibleSpawner : MonoBehaviour
             Collectible collectible = collectibleObject.AddComponent<Collectible>();
             collectible.SetCollectibleData(collectibleData);
 
-            OnCollectibleSpawned.Invoke(collectibleType, pos);
+            OnCollectibleSpawned?.Invoke(collectibleType, pos);
         }
     }
 }
