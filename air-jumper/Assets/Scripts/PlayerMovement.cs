@@ -5,10 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 1f;
-    public GameObject platformPrefab; 
+    public GameObject platformPrefab;
     public TextMeshProUGUI platformCounterText;
     private Rigidbody2D rb;
-    private int platformCount = 10; 
+    private int platformCount = 1;
     private bool isGrounded = false;
     private bool isOnPlatform = false;
     private bool facingRight = true;
@@ -94,26 +94,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool CheckIsOnUpperSideOfPlatform(Collision2D collision)
+    {
+        bool reached = true;
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (Vector2.Angle(Vector2.up, contact.normal) > 45)
+            {
+                reached = false;
+            }
+        }
+        return reached;
+    }
+
     private void CheckContactWithPlayerBuiltPlatforms(Collision2D collision)
     {
         BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
         if (canceler != null)
         {
-            bool reached = true;
-            foreach (ContactPoint2D contact in collision.contacts)
-            {
-                if (Vector2.Angle(Vector2.up, contact.normal) > 45)
-                {
-                    reached = false;
-                }
-            }
-
-            if (reached)
-            {
-                // Once the created platform is reached, it cannot be redo
-                canceler.cancalable = false;
-                jumpTimes = 2;
-            }
+            canceler.cancalable = false;
+            jumpTimes = 2;
         }
     }
 
@@ -126,10 +126,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Platform"))
         {
-            isOnPlatform = true;
-            jumpTimes = 1;
-
-            CheckContactWithPlayerBuiltPlatforms(collision);
+            if (CheckIsOnUpperSideOfPlatform(collision))
+            {
+                isOnPlatform = true;
+                jumpTimes = 1;
+                CheckContactWithPlayerBuiltPlatforms(collision);
+            }
         }
 
     }
@@ -157,11 +159,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Triggered");
 
-            platformCount += 10;
-            UpdatePlatformCounter();
             Destroy(collision.gameObject);
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
         }
+    }
+
+    public void AddPlatform(int count)
+    {
+        platformCount += count;
+        UpdatePlatformCounter();
     }
 
     private void WinGame()

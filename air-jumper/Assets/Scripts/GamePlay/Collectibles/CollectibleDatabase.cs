@@ -5,6 +5,7 @@ using UnityEngine;
 public enum CollectibleType
 {
     b_BlockCollectible,
+    s_PlatformCollectible,
 }
 
 
@@ -29,6 +30,7 @@ public class CollectibleDatabase : ScriptableObject
         {
             if (!collectibleLibrary.ContainsKey(entry.collectibleType))
             {
+                entry.collectibleData.collectibleType = entry.collectibleType;
                 collectibleLibrary.Add(entry.collectibleType, entry.collectibleData);
             }
         }

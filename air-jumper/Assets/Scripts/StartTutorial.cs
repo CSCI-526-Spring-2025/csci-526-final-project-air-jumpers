@@ -1,18 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyHintUI : MonoBehaviour
+public class TutorialManager : MonoBehaviour
 {
-    public GameObject hintPanel; 
+    public GameObject tutorialImage; 
+    private bool isTutorialActive = false; 
 
-    void Start()
+    void Update()
     {
-        
-        Invoke("HideHints", 7f);
+        if (Input.GetKeyDown(KeyCode.T)) 
+        {
+            ToggleTutorial();
+        }
     }
 
-    void HideHints()
+    void ToggleTutorial()
     {
-        hintPanel.SetActive(false);
+        isTutorialActive = !isTutorialActive;
+        tutorialImage.SetActive(isTutorialActive); 
+
+        if (isTutorialActive)
+        {
+            Time.timeScale = 0f; 
+        }
+        else
+        {
+            Time.timeScale = 1f; 
+        }
     }
 }
