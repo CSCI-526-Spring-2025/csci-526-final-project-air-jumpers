@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         Jump();
-        if (Input.GetKeyDown(KeyCode.B) && !isGrounded && !isOnPlatform && platformCount > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && !isOnPlatform && platformCount > 0)
         {
             SpawnPlatform();
         }
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if ((isGrounded || isOnPlatform || (jumpTimes > 0)) && Input.GetKeyDown(KeyCode.Space))
+        if ((isGrounded || isOnPlatform || (jumpTimes > 0)) && Input.GetKeyDown(KeyCode.W))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
