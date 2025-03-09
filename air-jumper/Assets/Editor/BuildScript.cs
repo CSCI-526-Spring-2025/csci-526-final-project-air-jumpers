@@ -55,9 +55,7 @@ public class BuildScript
                                 .Where(s => s.enabled)
                                 .Select(s => s.path)
                                 .ToArray();
-        // root dir
-        
-
+                                
         if (!Directory.Exists(outputPath))
         {
             Directory.CreateDirectory(outputPath);

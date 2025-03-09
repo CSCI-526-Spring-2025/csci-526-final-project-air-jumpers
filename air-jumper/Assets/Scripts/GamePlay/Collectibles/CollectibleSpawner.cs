@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class CollectibleSpawner : MonoBehaviour
 
     public CollectibleDatabase collectibleDatabase;
 
+    public event Action<CollectibleType, Vector3> OnCollectibleSpawned;
+
     public void SpawnCollectible(CollectibleType collectibleType, Vector3 pos)
     {
         CollectibleScriptable collectibleData = collectibleDatabase.GetCollectibleByType(collectibleType);
@@ -29,6 +32,8 @@ public class CollectibleSpawner : MonoBehaviour
             GameObject collectibleObject = Instantiate(collectibleData.prefab, pos, Quaternion.identity);
             Collectible collectible = collectibleObject.AddComponent<Collectible>();
             collectible.SetCollectibleData(collectibleData);
+
+            OnCollectibleSpawned.Invoke(collectibleType, pos);
         }
     }
 }
