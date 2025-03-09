@@ -10,7 +10,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     public TextMeshProUGUI text;
     public Button button;
     
-    public float buttonWidth = 100;
+    public float buttonWidth = 75;
 
     private int inventoryCount = 0;
     public BuildingMaterialScriptable materialData;

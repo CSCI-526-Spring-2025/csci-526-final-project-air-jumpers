@@ -9,7 +9,7 @@ public class BuildingMaterialCollectibleScriptable : CollectibleScriptable
 
     private void OnEnable()
     {
-        type = CollectibleCategory.BuildingMaterial;
+        category = CollectibleCategory.BuildingMaterial;
     }
 
     public override void ApplyEffect(GameObject player)

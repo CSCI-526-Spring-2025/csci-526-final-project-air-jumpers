@@ -10,9 +10,11 @@ public enum CollectibleCategory
 
 public abstract class CollectibleScriptable : ScriptableObject
 {
-    public CollectibleCategory type;
+    public CollectibleCategory category;
     public GameObject prefab;
     public int amount = 1;
+
+    public CollectibleType collectibleType;
 
     public abstract void ApplyEffect(GameObject player);
 }

@@ -28,7 +28,7 @@ public class CollectibleSpawner : MonoBehaviour
         {
             GameObject collectibleObject = Instantiate(collectibleData.prefab, pos, Quaternion.identity);
             Collectible collectible = collectibleObject.AddComponent<Collectible>();
-            collectible.collectibleData = collectibleData;
+            collectible.SetCollectibleData(collectibleData);
         }
     }
 }

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Patrol Settings")]
     public float moveSpeed = 2f;
-    public float patrolRange = 5f; 
+    public float patrolRange = 5f;
     private float leftLimit, rightLimit;
     private int direction = 1;
 
@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     public Slider healthBar;
     public Transform healthBarCanvas;
     public Vector3 healthBarOffset = new Vector3(0, 1f, 0);
+
+    [Header("Collectible")]
+    public CollectibleType collectibleType = CollectibleType.s_PlatformCollectible;
 
     private Vector3 startPos;
 
@@ -32,14 +35,17 @@ public class Enemy : MonoBehaviour
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
         }
+
+        if (collectibleType == CollectibleType.b_BlockCollectible)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        }
     }
 
     void Update()
     {
         Patrol();
         UpdateHealthBar();
-
-    
     }
 
 
@@ -59,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void Flip()
     {
-        direction *= -1; 
+        direction *= -1;
     }
 
 
@@ -81,16 +87,29 @@ public class Enemy : MonoBehaviour
 
         if (healthBarCanvas != null)
         {
-        
+
             healthBarCanvas.position = transform.position + healthBarOffset;
-            healthBarCanvas.rotation = Camera.main.transform.rotation; 
+            healthBarCanvas.rotation = Camera.main.transform.rotation;
         }
     }
 
     private void Die()
     {
-        CollectibleSpawner.Instance.SpawnCollectible(CollectibleType.b_BlockCollectible, transform.position);
+        CollectibleSpawner.Instance.SpawnCollectible(collectibleType, transform.position);
 
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(30f);
+            }
+        }
+    }
+
 }
