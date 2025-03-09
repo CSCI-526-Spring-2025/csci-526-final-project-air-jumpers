@@ -24,12 +24,14 @@ public class BuildScript
 
         RunGitCommand("checkout build");
         RunGitCommand("pull origin build");
+
+        AssetDatabase.Refresh();
         string currentVersion = PlayerSettings.bundleVersion;
         string newVersion = BumpVersion(currentVersion);
 
         RunGitCommand("checkout main");
         RunGitCommand("pull origin main");
-        RunGitCommand($"tag {tagPrefix}-{newVersion}");
+        RunGitCommand($"tag -a {newVersion} -m \"Version {tagPrefix}-{newVersion}\"");
         RunGitCommand("push origin HEAD");
         RunGitCommand("push origin --tags");
 
@@ -39,11 +41,11 @@ public class BuildScript
         PlayerSettings.bundleVersion = newVersion;
         AssetDatabase.SaveAssets();
 
-        BuildWebGL(repoRoot);
+        BuildWebGL($"{repoRoot}/{tagPrefix}-build");
 
         RunGitCommand("add .");
         RunGitCommand($"commit -m \"Build version {tagPrefix}-{newVersion}\"");
-        RunGitCommand($"tag {tagPrefix}-{newVersion}-build");
+        RunGitCommand($"tag -a {newVersion} -m \"Version {tagPrefix}-{newVersion}-build\"");
         RunGitCommand("push origin HEAD");
         RunGitCommand("push origin --tags");
     }
@@ -55,7 +57,7 @@ public class BuildScript
                                 .Where(s => s.enabled)
                                 .Select(s => s.path)
                                 .ToArray();
-                                
+
         if (!Directory.Exists(outputPath))
         {
             Directory.CreateDirectory(outputPath);
