@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI text;
     public Button button;
-    
+    public GameObject tooltip;
+    public Image tooltipBackground;
+
     public float buttonWidth = 75;
 
     private int inventoryCount = 0;
@@ -39,6 +41,12 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
         canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
 
         player = GameObject.FindWithTag("Player");
+
+        TextMeshProUGUI tooltipUI = tooltip.GetComponent<TextMeshProUGUI>();
+        if (tooltipUI)
+        {
+            tooltipUI.text = materialData.description;
+        }
     }
 
     public void UpdateCount(int count)
@@ -49,7 +57,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
             text.text = $"{count}";
         }
     }
-    
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         buildingBlock = new GameObject("BuildingMaterial");
@@ -87,7 +95,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
             }
 
             SpriteRenderer renderer = blockInstance.GetComponent<SpriteRenderer>();
-            
+
             BuildingMaterialCanceler canceler = blockInstance.AddComponent<BuildingMaterialCanceler>();
             canceler.materialInstance = buildingBlock;
             canceler.materialData = materialData;
@@ -108,5 +116,41 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
         // TODO: Check wether inside the game canvas
         Collider2D[] overlap = Physics2D.OverlapBoxAll(position, materialData.snapSize, 0);
         return overlap.Length == 1;
+    }
+
+    void Update()
+    {
+        if (tooltip.activeInHierarchy)
+        {
+
+            RectTransform textRect = tooltip.GetComponent<RectTransform>();
+            RectTransform bgRect = tooltipBackground.GetComponent<RectTransform>();
+
+            bgRect.transform.SetAsLastSibling();
+            textRect.transform.SetAsLastSibling();
+
+            bgRect.sizeDelta = textRect.sizeDelta + new Vector2(8, 10);
+            bgRect.pivot = textRect.pivot;
+            bgRect.anchorMin = textRect.anchorMin;
+            bgRect.anchorMax = textRect.anchorMax;
+            bgRect.anchoredPosition = textRect.anchoredPosition;
+
+            bgRect.anchoredPosition = textRect.anchoredPosition - new Vector2(0, 5);
+        }
+
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        tooltip.SetActive(true);
+        tooltipBackground.gameObject.SetActive(true);
+
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltip.SetActive(false);
+        tooltipBackground.gameObject.SetActive(false);
     }
 }

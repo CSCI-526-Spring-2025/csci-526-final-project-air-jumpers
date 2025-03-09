@@ -16,7 +16,7 @@ public class SkillCollectibleScriptable : CollectibleScriptable
         {
             case CollectibleType.s_PlatformCollectible:
                 player.GetComponent<PlayerMovement>().AddPlatform(amount);
-                break; 
+                break;
             default:
                 break;
         }
