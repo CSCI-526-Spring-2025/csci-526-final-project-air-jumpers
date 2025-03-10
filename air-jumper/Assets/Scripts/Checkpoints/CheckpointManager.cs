@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -5,6 +7,11 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager Instance;
     private Vector3 lastCheckpointPosition;
     private bool hasCheckpoint = false;
+
+    // Pending checkpoints array to store the order of checkpoints visited
+    private List<Checkpoint> checkpoints = new List<Checkpoint>();
+
+    private int checkpointCount = 0;
 
     private void Awake()
     {
@@ -29,4 +36,15 @@ public class CheckpointManager : MonoBehaviour
     {
         return hasCheckpoint;
     }
+
+    public void incrementCheckpoint()
+    {
+        checkpointCount += 1;
+    }
+
+    public int getCheckpointCount()
+    {
+        return checkpointCount;
+    }
+
 }

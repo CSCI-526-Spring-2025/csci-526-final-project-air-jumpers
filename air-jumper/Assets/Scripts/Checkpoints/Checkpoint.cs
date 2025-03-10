@@ -15,6 +15,9 @@ public class Checkpoint : MonoBehaviour
         {
             CheckpointManager.Instance.SetCheckpoint(transform.position);
             spriteRenderer.color = Color.green; // Change color to green when activated
+
+            CheckpointManager.Instance.incrementCheckpoint();
+
         }
     }
 }

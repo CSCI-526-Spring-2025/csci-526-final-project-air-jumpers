@@ -12,6 +12,8 @@ public class GameOverManager : MonoBehaviour
     private bool isGameOverTimerRunning = false;
     private Coroutine countdownCoroutine;
 
+    private SendToGoogle sendToGoogle; // SendToGoogle Object Initialization
+
     public void StartGameOverTimer()
     {
         if (!isGameOverTimerRunning)
@@ -61,6 +63,12 @@ public class GameOverManager : MonoBehaviour
     {
         Debug.Log("Game Over! Restarting...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // Need work to retain same sessionId if the same user restart
+
+        // Send the analytics for the same user after game over
+        sendToGoogle = FindObjectOfType<SendToGoogle>();
+        sendToGoogle.Send();
     }
 
     public void StopTimer()

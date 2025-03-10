@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float startTime; // Stores the game start time
 
+    private bool isWin;
+
+    private SendToGoogle sendToGoogle; // SendToGoogle Object Initialization
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -190,6 +194,13 @@ public class PlayerMovement : MonoBehaviour
         //Stop the timer and show a win message
         FindObjectOfType<GameOverManager>().StopTimer();
         Debug.Log("You Win!");
+
+        // Update the win status
+        isWin = true;
+        
+        // Send the analytics for the same user after game over
+        sendToGoogle = FindObjectOfType<SendToGoogle>();
+        sendToGoogle.Send();
     }
     public bool HasPlatforms()
     {
@@ -234,6 +245,10 @@ public void RespawnPlayer()
     public float getElapsedTime()
     {
         return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
+    }
+
+    public bool winCheck(){
+        return isWin;
     }
 
 }
