@@ -13,9 +13,6 @@ public class PlayerMovement : MonoBehaviour
     // platformCount tracks how many platforms are left to be created
     // private int platformCount = 10; 
 
-    // platformCount tracks how many platforms are left to be created
-    // private int platformCount = 10;
-
     // plaformUsed tracks how many plaforms has been created;
     private int platformCreated = 0;
     private bool isGrounded = false;
@@ -24,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     private int jumpTimes = 1;
     private Vector3 startPosition;
-
-    private float startTime; // Stores the game start time
 
     private float startTime; // Stores the game start time
 
