@@ -14,10 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
 
     private int jumpTimes = 1;
-
+    private Vector3 startPosition;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.position;
         UpdatePlatformCounter();
     }
 
@@ -177,4 +178,20 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameOverManager>().StopTimer();
         Debug.Log("You Win!");
     }
+    public bool HasPlatforms()
+    {
+        return platformCount > 0;
+    }
+public void RespawnPlayer()
+{
+    if (CheckpointManager.Instance.HasCheckpoint())
+    {
+        transform.position = CheckpointManager.Instance.GetCheckpointPosition(startPosition);
+    }
+    else
+    {
+        transform.position = startPosition; //No checkpoint reached yet
+    }
+}
+
 }

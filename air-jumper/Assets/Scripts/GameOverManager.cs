@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameOverManager : MonoBehaviour
 {
     public TextMeshProUGUI countdownText;
+    public TextMeshProUGUI winText;
+
     private float gameOverTimer = 10f;
     private bool isGameOverTimerRunning = false;
-    public TextMeshProUGUI winText;
+    private Coroutine countdownCoroutine;
 
     public void StartGameOverTimer()
     {
         if (!isGameOverTimerRunning)
         {
             isGameOverTimerRunning = true;
-            gameOverTimer = 10f; //Reset timer to 10 every time it starts
-            countdownText.gameObject.SetActive(true); //Show timer
-            InvokeRepeating("UpdateCountdownDisplay", 0f, 1f);
-            Invoke("GameOver", gameOverTimer);
+            countdownText.gameObject.SetActive(true);
+            countdownCoroutine = StartCoroutine(GameOverCountdown());
         }
     }
 
@@ -26,19 +27,34 @@ public class GameOverManager : MonoBehaviour
         if (isGameOverTimerRunning)
         {
             isGameOverTimerRunning = false;
-            CancelInvoke("GameOver");
-            CancelInvoke("UpdateCountdownDisplay");
             countdownText.gameObject.SetActive(false);
+
+            if (countdownCoroutine != null)
+            {
+                StopCoroutine(countdownCoroutine);
+            }
         }
     }
 
-    private void UpdateCountdownDisplay()
+    private IEnumerator GameOverCountdown()
     {
-        if (isGameOverTimerRunning)
+        float timeRemaining = gameOverTimer;
+
+        while (timeRemaining > 0)
         {
-            gameOverTimer -= 1f;
-            countdownText.text = "Game Over in: " + Mathf.Ceil(gameOverTimer).ToString() + "s";
+            countdownText.text = "Game Over in: " + Mathf.Ceil(timeRemaining).ToString() + "s";
+            yield return new WaitForSeconds(1f);
+            timeRemaining--;
+
+            if (FindObjectOfType<PlayerMovement>().HasPlatforms())
+            {
+                CancelGameOverTimer();
+                yield break;
+            }
+            gameOverTimer = timeRemaining;
         }
+
+        GameOver();
     }
 
     private void GameOver()
@@ -53,14 +69,13 @@ public class GameOverManager : MonoBehaviour
 
         if (isGameOverTimerRunning)
         {
-
             isGameOverTimerRunning = false;
-            CancelInvoke("GameOver");
-            CancelInvoke("UpdateCountdownDisplay");
+            if (countdownCoroutine != null)
+            {
+                StopCoroutine(countdownCoroutine);
+            }
             countdownText.gameObject.SetActive(false);
             winText.text = "You Win!";
-
         }
     }
-
 }
