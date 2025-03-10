@@ -907,6 +907,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1442075639782256850, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_text
+      value: Press 'H' for help
+      objectReference: {fileID: 0}
     - target: {fileID: 1562856297390235762, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1349,6 +1353,10 @@ PrefabInstance:
     - target: {fileID: 6614325627908374794, guid: 30b620a32b6065649ab400660d185073, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114648271301729470, guid: 30b620a32b6065649ab400660d185073, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2736,6 +2744,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  knockbackForce: 5
 --- !u!1 &2126643175
 GameObject:
   m_ObjectHideFlags: 0
