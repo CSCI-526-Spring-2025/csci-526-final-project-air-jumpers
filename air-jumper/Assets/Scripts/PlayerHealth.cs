@@ -15,11 +15,13 @@ public class PlayerHealth : MonoBehaviour
     public Image fill;
     public Gradient gradient;
 
-
+    private Rigidbody2D rb; 
+    public float knockbackForce = 5f; 
 
     void Start()
     {
         currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
 
         if (healthBarSlider != null)
         {
@@ -75,6 +77,29 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += healAmount;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
         UpdateHealthBar();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")) 
+        {
+            TakeDamage(40f);
+        }
+        else if (collision.CompareTag("Spike")) 
+        {
+            TakeDamage(60f);
+            Knockback(collision.transform.position);
+        }
+    }
+
+    private void Knockback(Vector3 hazardPosition)
+    {
+        if (rb != null)
+        {
+            Vector2 knockbackDirection = (transform.position - hazardPosition).normalized;
+            rb.velocity = Vector2.zero; 
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse); 
+        }
     }
 
 }
