@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - WinFlag
   - Platform
+  - Spike
   layers:
   - Default
   - TransparentFX
