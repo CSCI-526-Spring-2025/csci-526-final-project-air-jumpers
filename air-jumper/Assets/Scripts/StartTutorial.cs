@@ -38,7 +38,7 @@ public class TutorialManager : MonoBehaviour
 
                 TextMeshPro tmp = textObject.AddComponent<TextMeshPro>();
 
-                tmp.text = "Drag To Create & Double Jumb On The New Platform";
+                tmp.text = "Drag To create a Double Jump Platform";
                 tmp.fontSize = 6;
                 tmp.color = Color.white;
                 tmp.alignment = TextAlignmentOptions.Center;
