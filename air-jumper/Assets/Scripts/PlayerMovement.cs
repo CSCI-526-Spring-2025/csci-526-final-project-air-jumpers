@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -27,6 +28,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isWin;
 
     private SendToGoogle sendToGoogle; // SendToGoogle Object Initialization
+
+
+    /*
+    Pending development here to store the visited checkpoint in to a
+    dynamic array along with the player so that the last position store the last
+    checkpoint the player visited and the length of the array will be the total
+    visited checkpoint count
+    */
+    private List<Checkpoint> visitedCheckpoints;
 
     void Start()
     {
