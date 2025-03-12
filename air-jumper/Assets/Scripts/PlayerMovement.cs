@@ -212,21 +212,38 @@ public class PlayerMovement : MonoBehaviour
         sendToGoogle = FindObjectOfType<SendToGoogle>();
         sendToGoogle.Send();
     }
-    public bool HasPlatforms()
+    // public bool HasPlatforms()
+    // {
+    //     return platformCount > 0;
+    // }
+    // public void RespawnPlayer()
+    // {
+    //     if (CheckpointManager.Instance.HasCheckpoint())
+    //     {
+    //         transform.position = CheckpointManager.Instance.GetCheckpointPosition(startPosition);
+    //     }
+    //     else
+    //     {
+    //         transform.position = startPosition; //No checkpoint reached yet
+    //     }
+    // }
+
+    /// <summary>
+    /// Respawns the player at the last checkpoint or the default starting position.
+    /// </summary>
+    public void Respawn()
     {
-        return platformCount > 0;
+        if (newCheckpointManager.Instance.GetCheckpointCount() > 0)
+        {
+            transform.position = newCheckpointManager.Instance.GetLastCheckpoint();
+            Debug.Log("Respawned at: " + transform.position);
+        }
+        else
+        {
+            transform.position = startPosition;
+            Debug.Log("No checkpoint found. Respawn at default position.");
+        }
     }
-public void RespawnPlayer()
-{
-    if (CheckpointManager.Instance.HasCheckpoint())
-    {
-        transform.position = CheckpointManager.Instance.GetCheckpointPosition(startPosition);
-    }
-    else
-    {
-        transform.position = startPosition; //No checkpoint reached yet
-    }
-}
 
 
     /// <summary>
