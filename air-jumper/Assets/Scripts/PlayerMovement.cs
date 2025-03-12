@@ -212,10 +212,10 @@ public class PlayerMovement : MonoBehaviour
         sendToGoogle = FindObjectOfType<SendToGoogle>();
         sendToGoogle.Send();
     }
-    // public bool HasPlatforms()
-    // {
-    //     return platformCount > 0;
-    // }
+    public bool HasPlatforms()
+    {
+        return platformCount > 0;
+    }
     // public void RespawnPlayer()
     // {
     //     if (CheckpointManager.Instance.HasCheckpoint())
