@@ -75,7 +75,7 @@ public class SendToGoogle : MonoBehaviour
     {
         _newPlatformCount = playerMovement.getPlatformCreated();
         _levelElapsedTime = playerMovement.getElapsedTime();
-        _reachedCheckpoints = CheckpointManager.Instance.getCheckpointCount();
+        _reachedCheckpoints = newCheckpointManager.Instance.GetCheckpointCount();
 
         StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _reachedCheckpoints.ToString(), _levelElapsedTime.ToString("F2")));
     }
