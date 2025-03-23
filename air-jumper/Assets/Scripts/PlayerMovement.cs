@@ -1,7 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System;
+
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
 
     private int jumpTimes = 1;
+    private bool canSecondJump = false;
     private Vector3 startPosition;
 
     private float startTime; // Stores the game start time
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     visited checkpoint count
     */
     private List<Checkpoint> visitedCheckpoints;
+
+    private List<Action> currentPlatformEffects = new List<Action>();
 
     void Start()
     {
@@ -86,8 +90,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
+
+            if (jumpTimes == 0)
+            {
+                canSecondJump = false;
+            }
         }
     }
+
     void Flip()
     {
         facingRight = !facingRight;
@@ -111,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
         {
             FindObjectOfType<GameOverManager>().StartGameOverTimer();
         }
-
     }
 
     void UpdatePlatformCounter()
@@ -135,13 +144,47 @@ public class PlayerMovement : MonoBehaviour
         return reached;
     }
 
+    private void RegisterPlatformEffect(CollectibleType collectibleType)
+    {
+        switch (collectibleType)
+        {
+            case CollectibleType.b_BlockCollectible:
+                jumpTimes = 2;
+                canSecondJump = true;
+                break;
+
+            case CollectibleType.b_GunCollectible:
+                PlayerAttack playerAttack = gameObject.GetComponent<PlayerAttack>();
+                playerAttack.isGunInUse = true;
+
+                currentPlatformEffects.Add(() =>
+                {
+                    playerAttack.isGunInUse = false;
+                });
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void ClearPlatformEffects()
+    {
+        foreach (Action platformEffectCleaner in currentPlatformEffects)
+        {
+            platformEffectCleaner();
+        }
+
+        currentPlatformEffects.Clear();
+    }
+
     private void CheckContactWithPlayerBuiltPlatforms(Collision2D collision)
     {
-        BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
-        if (canceler != null)
+        BuildingPlatformManager buildingPlatformManager = collision.gameObject.GetComponentInChildren<BuildingPlatformManager>();
+        if (buildingPlatformManager != null)
         {
-            canceler.cancalable = false;
-            jumpTimes = 2;
+            buildingPlatformManager.cancalable = false;
+            RegisterPlatformEffect(buildingPlatformManager.materialData.buildingType);
         }
     }
 
@@ -173,6 +216,12 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("Platform"))
         {
             isOnPlatform = false;
+            ClearPlatformEffects();
+        }
+
+        if (!canSecondJump)
+        {
+            jumpTimes = 0;
         }
     }
 
@@ -278,4 +327,8 @@ public class PlayerMovement : MonoBehaviour
         return isWin;
     }
 
+    public bool IsFacingRight()
+    {
+        return facingRight;
+    }
 }

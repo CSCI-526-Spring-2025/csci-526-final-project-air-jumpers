@@ -222,6 +222,7 @@ MonoBehaviour:
   healthBar: {fileID: 4503822175536928303}
   healthBarCanvas: {fileID: 7367570958826192447}
   healthBarOffset: {x: 0, y: 0.2, z: 0}
+  collectibleType: 2
 --- !u!61 &5209996557527617359
 BoxCollider2D:
   m_ObjectHideFlags: 0

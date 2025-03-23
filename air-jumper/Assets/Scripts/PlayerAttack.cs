@@ -13,12 +13,43 @@ public class PlayerAttack : MonoBehaviour
     private bool facingRight = true;
     public ParticleSystem attackEffect;
 
+    [Header("Gun Controls")]
+    public GameObject bulletPrefab;
+    public bool isGunInUse = false;
+    public float bulletSpeed = 10f;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && Time.time >= lastAttackTime + attackCooldown)
         {
-            Attack();
+            if (!isGunInUse)
+            {
+                Attack();
+            }
+            else
+            {
+                GunAttack();
+            }
+        }
+    }
+
+    private void GunAttack()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            float direction = 1;
+            PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                if (!playerMovement.IsFacingRight())
+                {
+                    direction = -1;
+                }
+            }
+                
+            rb.velocity = new Vector2(direction * bulletSpeed, 0);
         }
     }
 
