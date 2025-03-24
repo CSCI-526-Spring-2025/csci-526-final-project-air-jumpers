@@ -18,6 +18,11 @@ public class CheckpointManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject); //Ensure it persists across scenes
+        }
+        else
+        {
+            Destroy(gameObject); //Destroy duplicate if another instance exists
         }
     }
 
@@ -46,5 +51,15 @@ public class CheckpointManager : MonoBehaviour
     {
         return checkpointCount;
     }
+
+    //New level function start
+
+    public void ResetCheckpoints(Vector3 newGroundPosition)
+    {
+        lastCheckpointPosition = newGroundPosition;
+        hasCheckpoint = true;  // Update the checkpoint
+    }
+    //New level function End
+
 
 }

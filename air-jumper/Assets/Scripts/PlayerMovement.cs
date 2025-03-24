@@ -265,7 +265,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Update the win status
         isWin = true;
-        
+        //Advance to the next level
+        GameManager.Instance.AdvanceToNextLevel();
+
         // Send the analytics for the same user after game over
         sendToGoogle = FindObjectOfType<SendToGoogle>();
         sendToGoogle.Send();
