@@ -712,7 +712,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1362801110522543702, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: collectibleType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1442075639782256850, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: m_text
@@ -2101,7 +2101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
@@ -2815,6 +2815,8 @@ MonoBehaviour:
     m_Bits: 64
   attackEffect: {fileID: 909232095}
   bulletPrefab: {fileID: 6869831741466339475, guid: ceca81ae9e9a8a0409ee69b8f4e46dbf, type: 3}
+  isGunInUse: 0
+  bulletSpeed: 10
 --- !u!114 &2063767281
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -163,6 +163,15 @@ public class PlayerMovement : MonoBehaviour
                 });
                 break;
 
+            case CollectibleType.b_DashCollectible:
+                moveSpeed *= 50;
+
+                currentPlatformEffects.Add(() =>
+                {
+                    moveSpeed /= 50;
+                });
+                break;
+
             default:
                 break;
         }

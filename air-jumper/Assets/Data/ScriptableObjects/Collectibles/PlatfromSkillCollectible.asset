@@ -15,4 +15,4 @@ MonoBehaviour:
   category: 0
   prefab: {fileID: 358340930222165731, guid: 8b52b39845cd4c6459e787ef9b7258e8, type: 3}
   amount: 5
-  collectibleType: 1
+  collectibleType: 3
