@@ -30,6 +30,9 @@ public class CollectibleSpawner : MonoBehaviour
         if (collectibleData != null)
         {
             GameObject collectibleObject = Instantiate(collectibleData.prefab, pos, Quaternion.identity);
+
+            BuildingInventoryManager.Instance.PlacePlatform(collectibleObject);
+
             Collectible collectible = collectibleObject.AddComponent<Collectible>();
             collectible.SetCollectibleData(collectibleData);
 
