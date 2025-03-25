@@ -96,7 +96,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
 
             SpriteRenderer renderer = blockInstance.GetComponent<SpriteRenderer>();
 
-            BuildingMaterialCanceler canceler = blockInstance.AddComponent<BuildingMaterialCanceler>();
+            BuildingPlatformManager canceler = blockInstance.AddComponent<BuildingPlatformManager>();
             canceler.materialInstance = buildingBlock;
             canceler.materialData = materialData;
 

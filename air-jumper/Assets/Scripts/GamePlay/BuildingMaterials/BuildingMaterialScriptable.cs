@@ -9,5 +9,7 @@ public class BuildingMaterialScriptable : ScriptableObject
     public GameObject prefab;
     public string description = "";
 
+    public CollectibleType buildingType;
+
     public Vector2 snapSize = Vector2.one;
 }

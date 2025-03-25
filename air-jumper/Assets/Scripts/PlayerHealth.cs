@@ -66,7 +66,10 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Died!");
-        FindObjectOfType<PlayerMovement>().RespawnPlayer();
+        // FindObjectOfType<PlayerMovement>().RespawnPlayer();
+
+        // New respawn logic has been added here
+        FindObjectOfType<PlayerMovement>().Respawn();
         currentHealth=maxHealth;
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

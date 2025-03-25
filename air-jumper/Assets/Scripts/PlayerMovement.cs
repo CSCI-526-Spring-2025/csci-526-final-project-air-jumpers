@@ -1,7 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System;
+
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
 
     private int jumpTimes = 1;
+    private bool canSecondJump = false;
     private Vector3 startPosition;
 
     private float startTime; // Stores the game start time
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     visited checkpoint count
     */
     private List<Checkpoint> visitedCheckpoints;
+
+    private List<Action> currentPlatformEffects = new List<Action>();
 
     void Start()
     {
@@ -86,8 +90,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
+
+            if (jumpTimes == 0)
+            {
+                canSecondJump = false;
+            }
         }
     }
+
     void Flip()
     {
         facingRight = !facingRight;
@@ -111,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
         {
             FindObjectOfType<GameOverManager>().StartGameOverTimer();
         }
-
     }
 
     void UpdatePlatformCounter()
@@ -135,13 +144,56 @@ public class PlayerMovement : MonoBehaviour
         return reached;
     }
 
+    private void RegisterPlatformEffect(CollectibleType collectibleType)
+    {
+        switch (collectibleType)
+        {
+            case CollectibleType.b_BlockCollectible:
+                jumpTimes = 2;
+                canSecondJump = true;
+                break;
+
+            case CollectibleType.b_GunCollectible:
+                PlayerAttack playerAttack = gameObject.GetComponent<PlayerAttack>();
+                playerAttack.isGunInUse = true;
+
+                currentPlatformEffects.Add(() =>
+                {
+                    playerAttack.isGunInUse = false;
+                });
+                break;
+
+            case CollectibleType.b_DashCollectible:
+                moveSpeed *= 50;
+
+                currentPlatformEffects.Add(() =>
+                {
+                    moveSpeed /= 50;
+                });
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void ClearPlatformEffects()
+    {
+        foreach (Action platformEffectCleaner in currentPlatformEffects)
+        {
+            platformEffectCleaner();
+        }
+
+        currentPlatformEffects.Clear();
+    }
+
     private void CheckContactWithPlayerBuiltPlatforms(Collision2D collision)
     {
-        BuildingMaterialCanceler canceler = collision.gameObject.GetComponentInChildren<BuildingMaterialCanceler>();
-        if (canceler != null)
+        BuildingPlatformManager buildingPlatformManager = collision.gameObject.GetComponentInChildren<BuildingPlatformManager>();
+        if (buildingPlatformManager != null)
         {
-            canceler.cancalable = false;
-            jumpTimes = 2;
+            buildingPlatformManager.cancalable = false;
+            RegisterPlatformEffect(buildingPlatformManager.materialData.buildingType);
         }
     }
 
@@ -173,6 +225,12 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("Platform"))
         {
             isOnPlatform = false;
+            ClearPlatformEffects();
+        }
+
+        if (!canSecondJump)
+        {
+            jumpTimes = 0;
         }
     }
 
@@ -216,17 +274,34 @@ public class PlayerMovement : MonoBehaviour
     {
         return platformCount > 0;
     }
-public void RespawnPlayer()
-{
-    if (CheckpointManager.Instance.HasCheckpoint())
+    // public void RespawnPlayer()
+    // {
+    //     if (CheckpointManager.Instance.HasCheckpoint())
+    //     {
+    //         transform.position = CheckpointManager.Instance.GetCheckpointPosition(startPosition);
+    //     }
+    //     else
+    //     {
+    //         transform.position = startPosition; //No checkpoint reached yet
+    //     }
+    // }
+
+    /// <summary>
+    /// Respawns the player at the last checkpoint or the default starting position.
+    /// </summary>
+    public void Respawn()
     {
-        transform.position = CheckpointManager.Instance.GetCheckpointPosition(startPosition);
+        if (newCheckpointManager.Instance.GetCheckpointCount() > 0)
+        {
+            transform.position = newCheckpointManager.Instance.GetLastCheckpoint();
+            Debug.Log("Respawned at: " + transform.position);
+        }
+        else
+        {
+            transform.position = startPosition;
+            Debug.Log("No checkpoint found. Respawn at default position.");
+        }
     }
-    else
-    {
-        transform.position = startPosition; //No checkpoint reached yet
-    }
-}
 
 
     /// <summary>
@@ -261,4 +336,8 @@ public void RespawnPlayer()
         return isWin;
     }
 
+    public bool IsFacingRight()
+    {
+        return facingRight;
+    }
 }
