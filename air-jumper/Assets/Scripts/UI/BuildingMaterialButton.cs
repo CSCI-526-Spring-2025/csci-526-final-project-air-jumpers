@@ -100,6 +100,8 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
             canceler.materialInstance = buildingBlock;
             canceler.materialData = materialData;
 
+            BuildingInventoryManager.Instance.PlacePlatform(blockInstance);
+
             if (renderer != null)
             {
                 renderer.sortingOrder = 0;

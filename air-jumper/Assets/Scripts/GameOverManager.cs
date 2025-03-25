@@ -16,12 +16,12 @@ public class GameOverManager : MonoBehaviour
 
     public void StartGameOverTimer()
     {
-        if (!isGameOverTimerRunning)
-        {
-            isGameOverTimerRunning = true;
-            countdownText.gameObject.SetActive(true);
-            countdownCoroutine = StartCoroutine(GameOverCountdown());
-        }
+        //if (!isGameOverTimerRunning)
+        //{
+        //    isGameOverTimerRunning = true;
+        //    countdownText.gameObject.SetActive(true);
+        //    countdownCoroutine = StartCoroutine(GameOverCountdown());
+        //}
     }
 
     public void CancelGameOverTimer()
@@ -30,16 +30,18 @@ public class GameOverManager : MonoBehaviour
         {
             isGameOverTimerRunning = false;
             countdownText.gameObject.SetActive(false);
+        }
 
-            if (countdownCoroutine != null)
-            {
-                StopCoroutine(countdownCoroutine);
-            }
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+            countdownCoroutine = null;
         }
     }
 
     private IEnumerator GameOverCountdown()
     {
+        
         float timeRemaining = gameOverTimer;
 
         while (timeRemaining > 0)
@@ -62,7 +64,8 @@ public class GameOverManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over! Restarting...");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.Start();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         // Need work to retain same sessionId if the same user restart
 

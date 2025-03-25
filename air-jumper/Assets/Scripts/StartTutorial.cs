@@ -23,7 +23,7 @@ public class TutorialManager : MonoBehaviour
 
     void OnCollectbleSpawned(CollectibleType collectibleType, Vector3 pos)
     {
-        if (currentLevel.name != "Level1")
+        if (!currentLevel.name.Contains("Level1"))
         {
             return;
         }
@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             ToggleTutorial();
         }

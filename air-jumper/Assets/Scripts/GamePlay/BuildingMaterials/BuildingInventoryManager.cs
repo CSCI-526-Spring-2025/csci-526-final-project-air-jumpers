@@ -8,6 +8,8 @@ public class BuildingInventoryManager : MonoBehaviour
     // Singleton
     public static BuildingInventoryManager Instance { get; private set; }
 
+    private List<GameObject> placedPlatform = new List<GameObject>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,9 +24,10 @@ public class BuildingInventoryManager : MonoBehaviour
     }
 
     public event Action<BuildingMaterialScriptable, int> OnMaterialUpdated;
+    public event Action<BuildingMaterialScriptable, int> OnMaterialCleared;
 
     private Dictionary<BuildingMaterialScriptable, int> materials = new Dictionary<BuildingMaterialScriptable, int>();
-    
+
     private void Start()
     {
         OnMaterialUpdated += OnMaterialUpdatedListener;
@@ -61,6 +64,11 @@ public class BuildingInventoryManager : MonoBehaviour
         return false;
     }
 
+    private void ClearMaterial(BuildingMaterialScriptable material)
+    {
+        OnMaterialCleared?.Invoke(material, 0);
+    }
+
     public Dictionary<BuildingMaterialScriptable, int> GetCurrentInventory()
     {
         return new Dictionary<BuildingMaterialScriptable, int>(materials);
@@ -69,5 +77,33 @@ public class BuildingInventoryManager : MonoBehaviour
     private void OnMaterialUpdatedListener(BuildingMaterialScriptable material, int newCount)
     {
         Debug.Log($"Building material {material.materialName} updated with count of {newCount}");
+    }
+
+    public void PlacePlatform(GameObject platform)
+    {
+        placedPlatform.Add(platform);
+    }
+
+    public void Clear()
+    {
+        foreach (var material in materials)
+        {
+            ClearMaterial(material.Key);
+        }
+        materials.Clear();
+
+        foreach (GameObject platform in placedPlatform)
+        {
+            try
+            {
+                Destroy(platform);
+            }
+            catch 
+            { 
+                //
+            }
+        }
+
+        placedPlatform.Clear();
     }
 }
