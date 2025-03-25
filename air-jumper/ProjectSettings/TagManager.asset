@@ -10,6 +10,7 @@ TagManager:
   - WinFlag
   - Platform
   - Spike
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

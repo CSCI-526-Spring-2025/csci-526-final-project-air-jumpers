@@ -5,6 +5,8 @@ using UnityEngine;
 public enum CollectibleType
 {
     b_BlockCollectible,
+    b_GunCollectible,
+    b_DashCollectible,
     s_PlatformCollectible,
 }
 

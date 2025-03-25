@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour
         if (collectibleType == CollectibleType.b_BlockCollectible)
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        } 
+        else if (collectibleType == CollectibleType.b_GunCollectible)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 

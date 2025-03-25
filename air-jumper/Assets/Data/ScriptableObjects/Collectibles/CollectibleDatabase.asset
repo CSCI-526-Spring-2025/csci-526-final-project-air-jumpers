@@ -16,4 +16,8 @@ MonoBehaviour:
   - collectibleType: 0
     collectibleData: {fileID: 11400000, guid: 2162be36de123d74893302a61c4d782f, type: 2}
   - collectibleType: 1
+    collectibleData: {fileID: 11400000, guid: 45aae708830333745b4bbabf0c603ad8, type: 2}
+  - collectibleType: 2
+    collectibleData: {fileID: 11400000, guid: c0a42e89c513e924585f88963c967cf9, type: 2}
+  - collectibleType: 3
     collectibleData: {fileID: 11400000, guid: 43aa18fa33c9eec428979e0ad1ee380f, type: 2}

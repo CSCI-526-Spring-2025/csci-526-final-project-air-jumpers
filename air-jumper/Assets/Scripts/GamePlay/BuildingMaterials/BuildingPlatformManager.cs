@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingMaterialCanceler : MonoBehaviour
+public class BuildingPlatformManager : MonoBehaviour
 {
     public bool cancalable = true;
 
