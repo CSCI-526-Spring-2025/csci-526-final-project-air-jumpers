@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 1
   prefab: {fileID: 7336038137451216312, guid: ab38100cdf5913a439b4e071a9cb010d, type: 3}
-  amount: 2
+  amount: 3
   collectibleType: 0
   buildingMaterialData: {fileID: 11400000, guid: 9be774619f0e3be4cadfcf53c48b21e4, type: 2}
