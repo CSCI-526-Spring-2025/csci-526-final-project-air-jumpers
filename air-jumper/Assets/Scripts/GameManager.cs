@@ -47,6 +47,7 @@ public void Start()
             BuildingInventoryManager.Instance.Clear();
             playerManager.Restart();
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+            FindAnyObjectByType<TutorialManager>().currentLevel = activeLevel;
         }
         else
         {
