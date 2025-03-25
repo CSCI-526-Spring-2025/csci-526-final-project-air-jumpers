@@ -9,14 +9,14 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
 
     [Header("Health Bar UI")]
-    public Slider healthBarSlider; 
-    public float damageCooldown = 1f; 
+    public Slider healthBarSlider;
+    public float damageCooldown = 1f;
     private float lastDamageTime;
     public Image fill;
     public Gradient gradient;
 
-    private Rigidbody2D rb; 
-    public float knockbackForce = 5f; 
+    private Rigidbody2D rb;
+    public float knockbackForce = 5f;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (Time.time >= lastDamageTime + damageCooldown) 
+        if (Time.time >= lastDamageTime + damageCooldown)
         {
             currentHealth -= damage;
             if (currentHealth < 0) currentHealth = 0;
@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
         // New respawn logic has been added here
         FindObjectOfType<PlayerMovement>().Respawn();
-        currentHealth=maxHealth;
+        currentHealth = maxHealth;
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -84,11 +84,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) 
+        if (collision.CompareTag("Enemy"))
         {
             TakeDamage(40f);
         }
-        else if (collision.CompareTag("Spike")) 
+        else if (collision.CompareTag("Spike"))
         {
             TakeDamage(60f);
             Knockback(collision.transform.position);
@@ -100,9 +100,15 @@ public class PlayerHealth : MonoBehaviour
         if (rb != null)
         {
             Vector2 knockbackDirection = (transform.position - hazardPosition).normalized;
-            rb.velocity = Vector2.zero; 
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse); 
+            rb.velocity = Vector2.zero;
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
+
+    public void ResetPlayerHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+    }
 }

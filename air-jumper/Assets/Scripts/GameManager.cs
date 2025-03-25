@@ -10,28 +10,28 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement playerManager;
 
-private void Awake()
-{
-    if (Instance == null)
+    private void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
 
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-    else
+    public void Start()
     {
-        Destroy(gameObject);
+        LoadLevel(currentLevelIndex);
     }
-}
-public void Start()
-{
-    LoadLevel(currentLevelIndex);
-}
 
 
     public void LoadLevel(int levelIndex)
     {
-                Debug.Log("Loaded level: " + levelIndex);
+        Debug.Log("Loaded level: " + levelIndex);
 
         if (activeLevel != null)
         {
@@ -48,6 +48,7 @@ public void Start()
             playerManager.Restart();
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
             FindAnyObjectByType<TutorialManager>().currentLevel = activeLevel;
+            FindAnyObjectByType<PlayerHealth>().ResetPlayerHealth();
         }
         else
         {
@@ -68,18 +69,18 @@ public void Start()
         }
     }
 
-public void AdvanceToNextLevel()
-{
-    Debug.Log("Attempting to load next level: " + (currentLevelIndex + 1));
+    public void AdvanceToNextLevel()
+    {
+        Debug.Log("Attempting to load next level: " + (currentLevelIndex + 1));
 
-    if (currentLevelIndex + 1 < levelPrefabs.Length)
-    {
-        LoadLevel(currentLevelIndex + 1);
+        if (currentLevelIndex + 1 < levelPrefabs.Length)
+        {
+            LoadLevel(currentLevelIndex + 1);
+        }
+        else
+        {
+            Debug.Log("No more levels");
+        }
     }
-    else
-    {
-        Debug.Log("No more levels");
-    }
-}
 
 }
