@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     private int currentLevelIndex = 0;
     private GameObject activeLevel;
 
+    public PlayerMovement playerManager;
+
 private void Awake()
 {
     if (Instance == null)
@@ -21,7 +23,7 @@ private void Awake()
         Destroy(gameObject);
     }
 }
-private void Start()
+public void Start()
 {
     LoadLevel(currentLevelIndex);
 }
@@ -41,6 +43,10 @@ private void Start()
             activeLevel = Instantiate(levelPrefabs[levelIndex], Vector3.zero, Quaternion.identity);
             currentLevelIndex = levelIndex;
             //ResetCheckpointToNewGround();
+
+            BuildingInventoryManager.Instance.Clear();
+            playerManager.Restart();
+            FindObjectOfType<GameOverManager>().CancelGameOverTimer();
         }
         else
         {

@@ -42,6 +42,29 @@ public class PlayerMovement : MonoBehaviour
 
     private List<Action> currentPlatformEffects = new List<Action>();
 
+    bool hasStarted = false;
+
+    public void Restart()
+    {
+        if (hasStarted)
+        {
+            transform.position = startPosition;
+        }
+        else
+        {
+            hasStarted = true;
+        }
+       
+    
+        StartTime();
+
+        FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+
+        platformCount = 1;
+        platformCreated = 0;
+        UpdatePlatformCounter();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -112,7 +135,10 @@ public class PlayerMovement : MonoBehaviour
     void SpawnPlatform()
     {
         Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 1.2f, 0);
-        Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        GameObject platform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+
+        BuildingInventoryManager.Instance.PlacePlatform(platform);
+
         platformCount--;
         platformCreated++;
         UpdatePlatformCounter();
