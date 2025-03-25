@@ -14,10 +14,12 @@ public class InventoryDrawer : MonoBehaviour
     void Start()
     {
         BuildingInventoryManager.Instance.OnMaterialUpdated += OnMaterialUpdatedListener;
+        BuildingInventoryManager.Instance.OnMaterialCleared += OnMaterialUpdatedListener;
     }
 
     private void OnDestroy()
     {
+        BuildingInventoryManager.Instance.OnMaterialCleared -= OnMaterialUpdatedListener;
         BuildingInventoryManager.Instance.OnMaterialUpdated -= OnMaterialUpdatedListener;
     }
 
