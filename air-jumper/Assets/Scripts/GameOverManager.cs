@@ -41,7 +41,7 @@ public class GameOverManager : MonoBehaviour
 
     private IEnumerator GameOverCountdown()
     {
-        
+
         float timeRemaining = gameOverTimer;
 
         while (timeRemaining > 0)
@@ -76,17 +76,17 @@ public class GameOverManager : MonoBehaviour
 
     public void StopTimer()
     {
-        winText.gameObject.SetActive(true);
+        // winText.gameObject.SetActive(true);
 
-        if (isGameOverTimerRunning)
-        {
-            isGameOverTimerRunning = false;
-            if (countdownCoroutine != null)
-            {
-                StopCoroutine(countdownCoroutine);
-            }
-            countdownText.gameObject.SetActive(false);
-            winText.text = "You Win!";
-        }
+        // if (isGameOverTimerRunning)
+        // {
+        //     isGameOverTimerRunning = false;
+        //     if (countdownCoroutine != null)
+        //     {
+        //         StopCoroutine(countdownCoroutine);
+        //     }
+        //     countdownText.gameObject.SetActive(false);
+        //     winText.text = "You Win!";
+        // }
     }
 }
