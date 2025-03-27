@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Time.time >= lastAttackTime + attackCooldown)
+        if (Input.GetMouseButtonDown(1) && Time.time >= lastAttackTime + attackCooldown)
         {
             if (!isGunInUse)
             {
