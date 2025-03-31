@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -292,7 +293,8 @@ public class PlayerMovement : MonoBehaviour
         // Update the win status
         isWin = true;
         //Advance to the next level
-        GameManager.Instance.AdvanceToNextLevel();
+        SceneManager.LoadScene("Level2");
+        //GameManager.Instance.AdvanceToNextLevel();
 
         // Send the analytics for the same user after game over
         sendToGoogle = FindObjectOfType<SendToGoogle>();
