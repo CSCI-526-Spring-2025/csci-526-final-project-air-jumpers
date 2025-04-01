@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 698390339}
   m_Layer: 0
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,11 +946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Touch the button to turn off the laser for 15 seconds!
-
-
-    Press V to
-    zoom-out'
+  m_text: Press the button to turn off the laser for 10 seconds!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1198,7 +1194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 10
 --- !u!61 &950668404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1617,7 +1613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 10
 --- !u!61 &1482048697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3509,7 +3505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
@@ -3869,11 +3865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
@@ -5805,7 +5801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
