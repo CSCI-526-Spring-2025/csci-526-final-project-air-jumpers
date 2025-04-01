@@ -93,6 +93,10 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(60f);
             Knockback(collision.transform.position);
         }
+        else if(collision.CompareTag("Laser"))
+        {
+            TakeDamage(maxHealth);
+        }
     }
 
     private void Knockback(Vector3 hazardPosition)

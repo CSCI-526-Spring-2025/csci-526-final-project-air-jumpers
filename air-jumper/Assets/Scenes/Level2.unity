@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 698390339}
   m_Layer: 0
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -889,6 +889,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781516059}
   m_CullTransparentMesh: 1
+--- !u!1 &893420912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893420914}
+  - component: {fileID: 893420913}
+  m_Layer: 0
+  m_Name: NewCheckpointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &893420913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893420912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2507f6e452f9946cb98983d0cc831713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &893420914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893420912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.831739, y: 25.361433, z: 0.13218755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895600454
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,11 +990,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Touch the button to turn off the laser for 15 seconds!
-
-
-    Press V to
-    zoom-out'
+  m_text: Press the button to turn off the laser for 10 seconds!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1198,7 +1238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 10
 --- !u!61 &950668404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1617,7 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 10
 --- !u!61 &1482048697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3509,7 +3549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
@@ -3635,7 +3675,7 @@ Transform:
   m_GameObject: {fileID: 8358738242828391831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6, y: -18.48, z: 0}
+  m_LocalPosition: {x: -6.9, y: -18.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3869,11 +3909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
@@ -5087,7 +5127,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &6905787973857839564
 Transform:
@@ -5805,7 +5845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleNum
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
@@ -5927,3 +5967,4 @@ SceneRoots:
   - {fileID: 950668406}
   - {fileID: 386684312}
   - {fileID: 312556020}
+  - {fileID: 893420914}
