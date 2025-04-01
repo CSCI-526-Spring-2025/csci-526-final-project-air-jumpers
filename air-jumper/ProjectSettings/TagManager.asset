@@ -12,6 +12,7 @@ TagManager:
   - Spike
   - Checkpoint
   - Button
+  - Laser
   layers:
   - Default
   - TransparentFX
