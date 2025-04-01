@@ -24,7 +24,7 @@ public class CollectibleSpawner : MonoBehaviour
 
     public event Action<CollectibleType, Vector3> OnCollectibleSpawned;
 
-    public void SpawnCollectible(CollectibleType collectibleType, Vector3 pos)
+    public void SpawnCollectible(CollectibleType collectibleType, Vector3 pos, int num = 0)
     {
         CollectibleScriptable collectibleData = collectibleDatabase.GetCollectibleByType(collectibleType);
         if (collectibleData != null)
@@ -34,6 +34,11 @@ public class CollectibleSpawner : MonoBehaviour
             BuildingInventoryManager.Instance.PlacePlatform(collectibleObject);
 
             Collectible collectible = collectibleObject.AddComponent<Collectible>();
+            if (num > 0)
+            {
+                collectible.times = num;
+            }
+
             collectible.SetCollectibleData(collectibleData);
 
             OnCollectibleSpawned?.Invoke(collectibleType, pos);
