@@ -11,6 +11,7 @@ TagManager:
   - Platform
   - Spike
   - Checkpoint
+  - Button
   layers:
   - Default
   - TransparentFX

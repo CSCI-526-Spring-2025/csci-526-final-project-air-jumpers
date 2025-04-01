@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Collectible")]
     public CollectibleType collectibleType = CollectibleType.s_PlatformCollectible;
+    public int collectibleNum = 3;
 
     private Vector3 startPos;
 
@@ -99,7 +100,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        CollectibleSpawner.Instance.SpawnCollectible(collectibleType, transform.position);
+        CollectibleSpawner.Instance.SpawnCollectible(collectibleType, transform.position, collectibleNum);
 
         Destroy(gameObject);
     }
