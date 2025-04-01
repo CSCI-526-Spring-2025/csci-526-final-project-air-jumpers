@@ -31,29 +31,29 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(int levelIndex)
     {
-        Debug.Log("Loaded level: " + levelIndex);
+        // Debug.Log("Loaded level: " + levelIndex);
 
-        if (activeLevel != null)
-        {
-            Destroy(activeLevel); // Remove the previous level
-        }
+        // if (activeLevel != null)
+        // {
+        //     Destroy(activeLevel); // Remove the previous level
+        // }
 
-        if (levelIndex < levelPrefabs.Length)
-        {
-            activeLevel = Instantiate(levelPrefabs[levelIndex], Vector3.zero, Quaternion.identity);
-            currentLevelIndex = levelIndex;
-            //ResetCheckpointToNewGround();
+        // if (levelIndex < levelPrefabs.Length)
+        // {
+        //     activeLevel = Instantiate(levelPrefabs[levelIndex], Vector3.zero, Quaternion.identity);
+        //     currentLevelIndex = levelIndex;
+        //     //ResetCheckpointToNewGround();
 
-            BuildingInventoryManager.Instance.Clear();
-            playerManager.Restart();
-            FindObjectOfType<GameOverManager>().CancelGameOverTimer();
-            FindAnyObjectByType<TutorialManager>().currentLevel = activeLevel;
-            FindAnyObjectByType<PlayerHealth>().ResetPlayerHealth();
-        }
-        else
-        {
-            Debug.Log("All levels completed!");
-        }
+        //     BuildingInventoryManager.Instance.Clear();
+        //     playerManager.Restart();
+        //     FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+        //     FindAnyObjectByType<TutorialManager>().currentLevel = activeLevel;
+        //     FindAnyObjectByType<PlayerHealth>().ResetPlayerHealth();
+        // }
+        // else
+        // {
+        //     Debug.Log("All levels completed!");
+        // }
     }
 
     private void ResetCheckpointToNewGround()
