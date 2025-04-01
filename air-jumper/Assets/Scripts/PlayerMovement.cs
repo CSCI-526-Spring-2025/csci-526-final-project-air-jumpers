@@ -297,13 +297,36 @@ public class PlayerMovement : MonoBehaviour
         // Update the win status
         isWin = true;
         //Advance to the next level
-        SceneManager.LoadScene("Level2");
+        LoadNextSceneAsync();
+
         //GameManager.Instance.AdvanceToNextLevel();
 
         // Send the analytics for the same user after game over
         sendToGoogle = FindObjectOfType<SendToGoogle>();
         sendToGoogle.Send();
     }
+
+    public void LoadNextSceneAsync()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log(nextSceneIndex);
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("load next scene");
+            StartCoroutine(LoadSceneAsync(nextSceneIndex));
+        }
+    }
+
+    System.Collections.IEnumerator LoadSceneAsync(int sceneIndex)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
+        while (!asyncLoad.isDone)
+        {
+            yield return null; // Wait until the scene is fully loaded
+        }
+    }
+
     public bool HasPlatforms()
     {
         return platformCount > 0;
