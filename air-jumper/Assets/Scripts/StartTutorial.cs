@@ -23,7 +23,7 @@ public class TutorialManager : MonoBehaviour
 
     void OnCollectbleSpawned(CollectibleType collectibleType, Vector3 pos)
     {
-        if (!currentLevel.name.Contains("Level1"))
+        if (currentLevel == null || !currentLevel.name.Contains("Level1"))
         {
             return;
         }

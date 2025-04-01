@@ -7,6 +7,7 @@ public class ReplayController : MonoBehaviour
     public void ReplayGame()
     {
         Time.timeScale = 1f; // 如果之前暂停过游戏，恢复时间流动
-        GameManager.Instance.Start();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        BuildingInventoryManager.Instance?.Clear();
     }
 }
