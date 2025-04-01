@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
 
     private int jumpTimes = 1;
     private bool canSecondJump = false;
+    private bool canDash = false;
+    private float dashInterval = 0.2f;
+    private float lastTapTimeA = 0;
+    private float lastTapTimeD = 0;
+
     private Vector3 startPosition;
 
     private float startTime; // Stores the game start time
@@ -55,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
         {
             hasStarted = true;
         }
-       
-    
+
+
         StartTime();
 
         FindObjectOfType<GameOverManager>().CancelGameOverTimer();
@@ -96,6 +102,27 @@ public class PlayerMovement : MonoBehaviour
         {
             move = 1f;
         }
+
+        if (canDash)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (Time.time - lastTapTimeA <= dashInterval)
+                {
+                    moveSpeed = 5 * 150;
+                }
+                lastTapTimeA = Time.time;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (Time.time - lastTapTimeD <= dashInterval)
+                {
+                    moveSpeed = 5 * 150;
+                }
+                lastTapTimeD = Time.time;
+            }
+        }
+
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
         if (move > 0 && !facingRight)
@@ -191,11 +218,12 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case CollectibleType.b_DashCollectible:
-                moveSpeed *= 150;
+                canDash = true;
 
                 currentPlatformEffects.Add(() =>
                 {
-                    moveSpeed /= 150;
+                    canDash = false;
+                    moveSpeed = 5f;
                 });
                 break;
 
@@ -233,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
                 jumpTimes = 1;
             }
-                
+
         }
         else if (collision.gameObject.CompareTag("Platform"))
         {
@@ -389,7 +417,8 @@ public class PlayerMovement : MonoBehaviour
         return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
     }
 
-    public bool winCheck(){
+    public bool winCheck()
+    {
         return isWin;
     }
 

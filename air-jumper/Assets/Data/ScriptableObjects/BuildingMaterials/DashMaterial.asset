@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialName: Dash
   prefab: {fileID: 1924946161209660251, guid: 10e1fb5954e0d544a9b16c76c5c954c6, type: 3}
-  description: Able to dashing on the created platform
+  description: DOUBLE CLICK A or D to dashing on the created platform
   buildingType: 2
   snapSize: {x: 2, y: 1}
