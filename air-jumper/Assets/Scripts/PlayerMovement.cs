@@ -355,8 +355,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            transform.position = startPosition;
+            
             Debug.Log("No checkpoint found. Respawn at default position.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
