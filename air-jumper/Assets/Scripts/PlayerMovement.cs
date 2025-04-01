@@ -228,8 +228,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
-            jumpTimes = 1;
+            if (CheckIsOnUpperSideOfPlatform(collision))
+            {
+                isGrounded = true;
+                jumpTimes = 1;
+            }
+                
         }
         else if (collision.gameObject.CompareTag("Platform"))
         {
