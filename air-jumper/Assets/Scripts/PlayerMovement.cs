@@ -191,11 +191,11 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case CollectibleType.b_DashCollectible:
-                moveSpeed *= 100;
+                moveSpeed *= 150;
 
                 currentPlatformEffects.Add(() =>
                 {
-                    moveSpeed /= 100;
+                    moveSpeed /= 150;
                 });
                 break;
 
