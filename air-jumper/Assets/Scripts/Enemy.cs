@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Collectible")]
     public CollectibleType collectibleType = CollectibleType.s_PlatformCollectible;
-    public int collectibleNum = 5;
+    public int collectibleNum = 3;
 
     private Vector3 startPos;
 

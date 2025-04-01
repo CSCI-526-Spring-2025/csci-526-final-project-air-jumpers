@@ -2345,6 +2345,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
       value: 0
       objectReference: {fileID: 0}
@@ -3217,8 +3221,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2920875482235220685, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_Layer
@@ -3571,6 +3579,10 @@ PrefabInstance:
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: patrolRange
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleNum
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
@@ -5488,6 +5500,10 @@ PrefabInstance:
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: patrolRange
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: collectibleNum
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22875112444281263, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: collectibleType
