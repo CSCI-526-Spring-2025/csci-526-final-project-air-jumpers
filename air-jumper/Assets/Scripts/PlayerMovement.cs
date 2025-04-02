@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor.PackageManager.Requests;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -407,6 +408,11 @@ public class PlayerMovement : MonoBehaviour
     void StartTime()
     {
         startTime = Time.time; // Store the current time as the start time
+    }
+
+    public float getStartTime()
+    {
+        return startTime;
     }
 
     /// <summary>

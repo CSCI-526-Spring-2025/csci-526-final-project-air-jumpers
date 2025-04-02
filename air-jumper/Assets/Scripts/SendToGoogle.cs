@@ -22,10 +22,10 @@ public class SendToGoogle : MonoBehaviour
     private int _newPlatformCount;
 
     // Track the number of checkpoints reached by the player
-    private int _reachedCheckpoints;
+    private int _visitedCheckpointsCount;
 
     // A list stored the visited checkpoints information
-    private List<string> _checkpointsVisited = new List<string>();
+    private List<CheckpointData> _visitedCheckpoints = new List<CheckpointData>();
 
     // Track the numbers of replay button clicked
     private int _replayButtonClicked;
@@ -106,9 +106,13 @@ public class SendToGoogle : MonoBehaviour
     {
         _newPlatformCount = playerMovement.getPlatformCreated();
         _levelElapsedTime = playerMovement.getElapsedTime();
-        _reachedCheckpoints = newCheckpointManager.Instance.GetCheckpointCount();
+        _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
+        _visitedCheckpointsCount = newCheckpointManager.Instance.GetCheckpointCount();
 
-        StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _reachedCheckpoints.ToString(), _levelElapsedTime.ToString("F2")));
+        // For Debug Purposes
+        DebugPrintAllCheckpoints(_visitedCheckpoints);
+
+        // StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _visitedCheckpointsCount.ToString(), _levelElapsedTime.ToString("F2")));
     }
 
     /// <summary>
@@ -133,4 +137,28 @@ public class SendToGoogle : MonoBehaviour
         // Find the PlayerMovement script in the scene
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
+
+
+    /// <summary>
+    /// Prints all visited checkpoints to the console for debugging purposes.
+    /// </summary>
+    public void DebugPrintAllCheckpoints(List<CheckpointData> visitedCheckpoints)
+    {
+        if (visitedCheckpoints.Count == 0)
+        {
+            Debug.Log("No checkpoints visited yet.");
+            return;
+        }
+
+        Debug.Log("=== Visited Checkpoints ===");
+
+        for (int i = 0; i < visitedCheckpoints.Count; i++)
+        {
+            var cp = visitedCheckpoints[i];
+            Debug.Log($"Checkpoint #{i + 1} | Pos: {cp.position} | Time: {cp.timeReached:F2}s | Δ From Previous: {cp.timeSinceLastCheckpoint:F2}s");
+        }
+
+        Debug.Log("===========================");
+    }
+
 }
