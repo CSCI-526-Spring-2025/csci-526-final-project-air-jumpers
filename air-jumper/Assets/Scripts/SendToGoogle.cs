@@ -15,15 +15,39 @@ public class SendToGoogle : MonoBehaviour
 {
     [SerializeField] private string URL;
 
+    // Track the session ID
     private long _sessionID;
+
+    // Track the numbers of platforms created by the player
     private int _newPlatformCount;
+
+    // Track the number of checkpoints reached by the player
     private int _reachedCheckpoints;
+
+    // A list stored the visited checkpoints information
+    private List<string> _checkpointsVisited = new List<string>();
+
+    // Track the numbers of replay button clicked
+    private int _replayButtonClicked;
+
+    // Track how many times the player health dropped to 0
+    private int _gameOverCount;
+
+    // Track the time taken to finish one level
     private float _levelElapsedTime;
 
-    private int _collectiblesCount;
-    private int _enemyDefeated;
-    private bool isWin;
-    private int gameOverCount;
+    // Track the times W is pressed for jumping
+    private int _jumpCount;
+
+    // Track which level player is currently in
+    private int _currentLevel;
+
+
+
+    // private int _collectiblesCount;
+    // private int _enemyDefeated;
+    // private bool isWin;
+    // private int gameOverCount;
 
     PlayerMovement playerMovement;
 
@@ -65,6 +89,14 @@ public class SendToGoogle : MonoBehaviour
                 Debug.Log("Form upload complete!");
             }
         }
+    }
+
+    /// <summary>
+    /// Increments the number of platforms created by the player.
+    /// </summary>
+    public void incrementGameOverCount()
+    {
+        _gameOverCount++;
     }
 
     /// <summary>

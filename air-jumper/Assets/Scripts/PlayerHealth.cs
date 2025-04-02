@@ -68,6 +68,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Died!");
         // FindObjectOfType<PlayerMovement>().RespawnPlayer();
 
+        // Update the game over count in SendToGoogle
+        SendToGoogle sendToGoogle = FindObjectOfType<SendToGoogle>();
+        if (sendToGoogle != null)
+        {
+            sendToGoogle.incrementGameOverCount();
+        }
+
         // New respawn logic has been added here
         FindObjectOfType<PlayerMovement>().Respawn();
         currentHealth = maxHealth;
