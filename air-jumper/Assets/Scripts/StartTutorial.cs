@@ -9,41 +9,93 @@ public class TutorialManager : MonoBehaviour
     private bool isTutorialActive = false;
 
     private Dictionary<CollectibleType, bool> hasTutorialShown = new Dictionary<CollectibleType, bool>();
-    public GameObject currentLevel;
+    public string currentLevel = "";
 
     void OnEnable()
     {
-        CollectibleSpawner.Instance.OnCollectibleSpawned += OnCollectbleSpawned;
+        if (CollectibleSpawner.Instance != null)
+        {
+            CollectibleSpawner.Instance.OnCollectibleSpawned += OnCollectbleSpawned;
+            CollectibleSpawner.Instance.OnCollectibleCollected += OnCollectibeCollected;
+        }
     }
 
     void OnDestroy()
     {
-        CollectibleSpawner.Instance.OnCollectibleSpawned -= OnCollectbleSpawned;
+        if (CollectibleSpawner.Instance != null)
+        {
+            CollectibleSpawner.Instance.OnCollectibleSpawned -= OnCollectbleSpawned;
+            CollectibleSpawner.Instance.OnCollectibleCollected -= OnCollectibeCollected;
+        }
+    }
+
+    void OnCollectibeCollected(CollectibleType collectibleType, Vector3 pos)
+    {
+        Debug.Log(currentLevel);
+
+        if (currentLevel == "Tutorial1")
+        {
+            if (collectibleType == CollectibleType.s_PlatformCollectible)
+            {
+                if (!hasTutorialShown.ContainsKey(collectibleType))
+                {
+                    hasTutorialShown[collectibleType] = true;
+                    GameObject textObject = new GameObject("TextMeshPro");
+
+                    TextMeshPro tmp = textObject.AddComponent<TextMeshPro>();
+
+                    tmp.text = "Press \"W\" to jump, then press SPACE in the air to create a platform";
+                    tmp.fontSize = 6;
+                    tmp.color = Color.white;
+                    tmp.alignment = TextAlignmentOptions.Center;
+
+                    tmp.transform.position = pos + new Vector3(0, 2, 0);
+                }
+            }
+        }
+
+        if (currentLevel == "Tutorial2")
+        {
+            if (collectibleType == CollectibleType.b_BlockCollectible)
+            {
+                GameObject tutorial = GameObject.Find("T_Tutorial2");
+
+                //Debug.Log(tutorial);
+                TextMeshPro tmp = tutorial.GetComponent<TextMeshPro>();
+                if (tmp != null)
+                {
+                    tmp.text = "Drag from the buttom dock panel to create a Double Jump Platform ¡ý";
+                }
+            }
+        }
     }
 
     void OnCollectbleSpawned(CollectibleType collectibleType, Vector3 pos)
     {
-        if (currentLevel == null || !currentLevel.name.Contains("Level1"))
+        if (currentLevel == "Tutorial2")
         {
-            return;
-        }
-
-        if (collectibleType == CollectibleType.b_BlockCollectible)
-        {
-            if (!hasTutorialShown.ContainsKey(collectibleType))
+            GameObject tutorial = GameObject.Find("Hint");
+            if (tutorial != null)
             {
-                hasTutorialShown[collectibleType] = true;
+                Destroy(tutorial);
+            }
 
-                GameObject textObject = new GameObject("TextMeshPro");
+            if (collectibleType == CollectibleType.b_BlockCollectible)
+            {
+                if (!hasTutorialShown.ContainsKey(collectibleType))
+                {
+                    hasTutorialShown[collectibleType] = true;
 
-                TextMeshPro tmp = textObject.AddComponent<TextMeshPro>();
+                    GameObject textObject = new GameObject("T_Tutorial2");
 
-                tmp.text = "Drag To create a Double Jump Platform";
-                tmp.fontSize = 6;
-                tmp.color = Color.white;
-                tmp.alignment = TextAlignmentOptions.Center;
+                    TextMeshPro tmp = textObject.AddComponent<TextMeshPro>();
+                    tmp.text = "Collect the collectible!";
+                    tmp.fontSize = 6;
+                    tmp.color = Color.white;
+                    tmp.alignment = TextAlignmentOptions.Center;
 
-                tmp.transform.position = pos + new Vector3(0, 1, 0);
+                    tmp.transform.position = pos + new Vector3(0, 2.5f, 0);
+                }
             }
         }
     }

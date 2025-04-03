@@ -117,6 +117,17 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     {
         // TODO: Check wether inside the game canvas
         Collider2D[] overlap = Physics2D.OverlapBoxAll(position, materialData.snapSize, 0);
+
+        // Allow placing if over the invisible checkpoint
+        foreach (var collider in overlap)
+        {
+            if (collider.CompareTag("Checkpoint"))
+            {
+                // 如果碰撞体是 checkpoint，允许放置
+                return true;
+            }
+        }
+
         return overlap.Length == 1;
     }
 

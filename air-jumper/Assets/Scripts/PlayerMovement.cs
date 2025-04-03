@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor.PackageManager.Requests;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 1f;
     public GameObject platformPrefab;
     public TextMeshProUGUI platformCounterText;
+    public int initPlatformCount = 1;
+
     private Rigidbody2D rb;
     private int platformCount = 1;
 
@@ -49,31 +52,10 @@ public class PlayerMovement : MonoBehaviour
 
     private List<Action> currentPlatformEffects = new List<Action>();
 
-    bool hasStarted = false;
-
-    public void Restart()
-    {
-        if (hasStarted)
-        {
-            transform.position = startPosition;
-        }
-        else
-        {
-            hasStarted = true;
-        }
-
-
-        StartTime();
-
-        FindObjectOfType<GameOverManager>().CancelGameOverTimer();
-
-        platformCount = 1;
-        platformCreated = 0;
-        UpdatePlatformCounter();
-    }
-
     void Start()
     {
+        platformCount = initPlatformCount;
+
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
         UpdatePlatformCounter();
@@ -407,6 +389,11 @@ public class PlayerMovement : MonoBehaviour
     void StartTime()
     {
         startTime = Time.time; // Store the current time as the start time
+    }
+
+    public float getStartTime()
+    {
+        return startTime;
     }
 
     /// <summary>
