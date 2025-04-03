@@ -3,8 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using UnityEditor.PackageManager.Requests;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private float lastTapTimeA = 0;
     private float lastTapTimeD = 0;
 
-    private Vector3 startPosition;
-
     private float startTime; // Stores the game start time
 
     private bool isWin;
@@ -57,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
         platformCount = initPlatformCount;
 
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
         UpdatePlatformCounter();
 
         StartTime(); // Start the game timer
