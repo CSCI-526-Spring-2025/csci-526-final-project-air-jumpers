@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectibleSpawner : MonoBehaviour
@@ -24,6 +22,8 @@ public class CollectibleSpawner : MonoBehaviour
 
     public event Action<CollectibleType, Vector3> OnCollectibleSpawned;
 
+    public event Action<CollectibleType, Vector3> OnCollectibleCollected;
+
     public void SpawnCollectible(CollectibleType collectibleType, Vector3 pos, int num = 0)
     {
         CollectibleScriptable collectibleData = collectibleDatabase.GetCollectibleByType(collectibleType);
@@ -43,5 +43,10 @@ public class CollectibleSpawner : MonoBehaviour
 
             OnCollectibleSpawned?.Invoke(collectibleType, pos);
         }
+    }
+
+    public void CollectCollectible(CollectibleType collectibleType, Vector3 pos)
+    {
+        OnCollectibleCollected?.Invoke(collectibleType, pos);
     }
 }
