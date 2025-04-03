@@ -1446,7 +1446,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1494,7 +1494,7 @@ MonoBehaviour:
   offset: {x: 0, y: 3, z: -10}
   mainCamera: {fileID: 1369733206}
   zoomOutSize: 20
-  zoomInSize: 10
+  zoomInSize: 12
   zoomDuration: 3
   zoomSpeed: 1
   zoomSpeedStart: 1

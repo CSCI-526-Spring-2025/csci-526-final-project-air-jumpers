@@ -2295,10 +2295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 2678162428260706754}
   followSpeed: 5
-  offset: {x: 0, y: 3, z: -10}
+  offset: {x: 0, y: 5, z: -10}
   mainCamera: {fileID: 2008312522}
-  zoomOutSize: 20
-  zoomInSize: 10
+  zoomOutSize: 26
+  zoomInSize: 16
   zoomDuration: 3
   zoomSpeed: 1
   zoomSpeedStart: 1
@@ -2345,7 +2345,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
