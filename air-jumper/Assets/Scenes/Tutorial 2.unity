@@ -2802,6 +2802,7 @@ MonoBehaviour:
   jumpForce: 8
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 232251947}
+  initPlatformCount: 0
 --- !u!50 &2063767278
 Rigidbody2D:
   serializedVersion: 4
