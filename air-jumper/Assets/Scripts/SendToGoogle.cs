@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles sending player analytics data to a Google Form.
@@ -42,6 +43,9 @@ public class SendToGoogle : MonoBehaviour
     // Track which level player is currently in
     private int _currentLevel;
 
+    // Track the number of building platforms created by the player
+    private int _buildingPlatformCount;
+
 
 
     // private int _collectiblesCount;
@@ -50,6 +54,7 @@ public class SendToGoogle : MonoBehaviour
     // private int gameOverCount;
 
     PlayerMovement playerMovement;
+    BuildingInventoryManager buildingInventoryManager;
 
     private void Awake()
     {
@@ -105,12 +110,13 @@ public class SendToGoogle : MonoBehaviour
     public void Send()
     {
         _newPlatformCount = playerMovement.getPlatformCreated();
+        _buildingPlatformCount = buildingInventoryManager.getPlacedPlatformsCount();
         _levelElapsedTime = playerMovement.getElapsedTime();
         _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
         _visitedCheckpointsCount = newCheckpointManager.Instance.GetCheckpointCount();
 
         // For Debug Purposes
-        DebugPrintAllCheckpoints(_visitedCheckpoints);
+        // DebugPrintAllCheckpoints(_visitedCheckpoints);
 
         // StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _visitedCheckpointsCount.ToString(), _levelElapsedTime.ToString("F2")));
     }
@@ -136,6 +142,13 @@ public class SendToGoogle : MonoBehaviour
     {
         // Find the PlayerMovement script in the scene
         playerMovement = FindObjectOfType<PlayerMovement>();
+
+        // Find the BuildingInventoryManager script in the scene
+        buildingInventoryManager = FindObjectOfType<BuildingInventoryManager>();
+
+        // Get the current level index
+        _currentLevel = SceneManager.GetActiveScene().buildIndex;
+        // Debug.Log("currentlevel: "+_currentLevel);
     }
 
 
