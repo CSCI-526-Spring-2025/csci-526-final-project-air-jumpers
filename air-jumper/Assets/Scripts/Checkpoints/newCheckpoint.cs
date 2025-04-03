@@ -15,6 +15,8 @@ public class newCheckpoint : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        
     }
 
 
@@ -29,7 +31,23 @@ public class newCheckpoint : MonoBehaviour
         {
             isVisited = true;
             newCheckpointManager.Instance.RegisterCheckpoint(transform.position);
-            spriteRenderer.color = Color.green;
         }
     }
+
+    /// <summary>
+    /// Draws a wireframe cube in the Scene view to visualize the checkpoint trigger area.
+    /// Only visible in the editor.
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        if (box != null)
+        {
+            Vector3 gizmoPos = transform.position + (Vector3)box.offset;
+            Gizmos.DrawWireCube(gizmoPos, box.size);
+        }
+    }
+
 }

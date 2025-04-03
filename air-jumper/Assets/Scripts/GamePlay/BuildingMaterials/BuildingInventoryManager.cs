@@ -84,6 +84,19 @@ public class BuildingInventoryManager : MonoBehaviour
         placedPlatform.Add(platform);
     }
 
+    // Returns the list of placed platforms
+    public List<GameObject> getPlacedPlatforms()
+    {
+        return placedPlatform;
+    }
+
+    // Returns the number of placed platforms
+    public int getPlacedPlatformsCount()
+    {
+        return placedPlatform.Count;
+    }
+
+
     public void Clear()
     {
         foreach (var material in materials)

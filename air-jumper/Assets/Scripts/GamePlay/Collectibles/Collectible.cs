@@ -38,5 +38,10 @@ public class Collectible : MonoBehaviour
     private void ApplyCollectibleEffect(GameObject player)
     {
         activeCollectibleData.ApplyEffect(player);
+
+        if (CollectibleSpawner.Instance != null)
+        {
+            CollectibleSpawner.Instance.CollectCollectible(activeCollectibleData.collectibleType, transform.position);
+        }
     }
 }
