@@ -1996,23 +1996,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 22.50011
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 22.50011
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 22.50011
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 582.00006
+      value: 776.0001
       objectReference: {fileID: 0}
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 356.25
+      value: 474
       objectReference: {fileID: 0}
     - target: {fileID: 5060832046162197254, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3066,6 +3066,7 @@ MonoBehaviour:
   jumpForce: 8
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 1324045872}
+  initPlatformCount: 1
 --- !u!61 &1182177829150143005
 BoxCollider2D:
   m_ObjectHideFlags: 0
