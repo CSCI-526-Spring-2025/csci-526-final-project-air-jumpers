@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2246,6 +2246,10 @@ PrefabInstance:
     - target: {fileID: 7023789198569778596, guid: b7156fc97bcb444c0b9f5b9f57ad422a, type: 3}
       propertyPath: m_Name
       value: InvisibleCheckpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023789198569778596, guid: b7156fc97bcb444c0b9f5b9f57ad422a, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7023789198569778596, guid: b7156fc97bcb444c0b9f5b9f57ad422a, type: 3}
       propertyPath: m_TagString
@@ -5592,7 +5596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7023789198569778596, guid: b7156fc97bcb444c0b9f5b9f57ad422a, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7023789198569778596, guid: b7156fc97bcb444c0b9f5b9f57ad422a, type: 3}
       propertyPath: m_TagString

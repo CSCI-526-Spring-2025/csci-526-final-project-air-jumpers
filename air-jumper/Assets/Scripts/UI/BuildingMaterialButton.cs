@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -116,17 +117,10 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     private bool CanPlaceMaterial(Vector2 position, BuildingMaterialScriptable materialData)
     {
         // TODO: Check wether inside the game canvas
-        Collider2D[] overlap = Physics2D.OverlapBoxAll(position, materialData.snapSize, 0);
-
-        // Allow placing if over the invisible checkpoint
-        foreach (var collider in overlap)
+        Collider2D[] overlap = Physics2D.OverlapBoxAll(position, materialData.snapSize, 0).Where(c =>
         {
-            if (collider.CompareTag("Checkpoint"))
-            {
-                // 如果碰撞体是 checkpoint，允许放置
-                return true;
-            }
-        }
+            return !c.CompareTag("Checkpoint");
+        }).ToArray();
 
         return overlap.Length == 1;
     }
@@ -157,8 +151,6 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
     {
         tooltip.SetActive(true);
         tooltipBackground.gameObject.SetActive(true);
-
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
