@@ -160,14 +160,6 @@ public class SendToGoogle : MonoBehaviour
     }
 
     /// <summary>
-    /// Increments the number of platforms created by the player.
-    /// </summary>
-    public void incrementGameOverCount()
-    {
-        _gameOverCount++;
-    }
-
-    /// <summary>
     /// Collects player data and starts the upload process.
     /// </summary>
     public void Send()
@@ -201,6 +193,22 @@ public class SendToGoogle : MonoBehaviour
     public float GetLevelStartTime()
     {
         return _levelStartTime;
+    }
+
+    /// <summary>
+    /// Increments the number of platforms created by the player.
+    /// </summary>
+    public void incrementGameOverCount()
+    {
+        _gameOverCount++;
+    }
+
+    /// <summary>
+    /// Increments the number of platforms created by the player.
+    /// </summary>
+    public void IncrementReplayButtonClickCount()
+    {
+        _replayButtonClicked++;
     }
 
 
