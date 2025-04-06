@@ -14,10 +14,19 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SendToGoogle : MonoBehaviour
 {
+    // Singleton instance
+    public static SendToGoogle Instance { get; private set; }
+
     [SerializeField] private string URL;
 
     // Track the session ID
     private long _sessionID;
+
+    // Track the time when the level starts
+    private float _levelStartTime;
+
+    // Track the time taken to finish one level
+    private float _levelElapsedTime;
 
     // Track the numbers of platforms created by the player
     private int _newPlatformCount;
@@ -33,9 +42,6 @@ public class SendToGoogle : MonoBehaviour
 
     // Track how many times the player health dropped to 0
     private int _gameOverCount;
-
-    // Track the time taken to finish one level
-    private float _levelElapsedTime;
 
     // Track the times W is pressed for jumping
     private int _jumpCount;
@@ -58,10 +64,67 @@ public class SendToGoogle : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton pattern to ensure only one instance of SendToGoogle exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         _sessionID = DateTime.Now.Ticks;
 
         // Send();
+        _currentLevel = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("SendToGoogle initialized. Current Level: " + _currentLevel);
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded; // 注册场景加载事件
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // 取消注册场景加载事件
+    }
+
+    /// <summary>
+    /// Reset scene specific data when new scene is loaded.
+    /// </summary>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Update the current level when a new scene is loaded
+        _currentLevel = scene.buildIndex;
+
+        // Reset the level start time and other variables
+        _levelStartTime = Time.time;
+        _newPlatformCount = 0;
+        _visitedCheckpointsCount = 0;
+        _jumpCount = 0;
+        _gameOverCount = 0;
+        _visitedCheckpoints.Clear();
+
+        Debug.Log($"New level loaded: {_currentLevel}. Timer reset.");
+    }
+
+    /// <summary>
+    /// Initializes references when the game starts.
+    /// </summary>
+    void Start()
+    {
+        // Find the PlayerMovement script in the scene
+        playerMovement = FindObjectOfType<PlayerMovement>();
+
+        // Find the BuildingInventoryManager script in the scene
+        buildingInventoryManager = FindObjectOfType<BuildingInventoryManager>();
+
+    }
+
+
+
 
     /// <summary>
     /// Sends collected player data to a Google Form using an HTTP POST request.
@@ -111,7 +174,7 @@ public class SendToGoogle : MonoBehaviour
     {
         _newPlatformCount = playerMovement.getPlatformCreated();
         _buildingPlatformCount = buildingInventoryManager.getPlacedPlatformsCount();
-        _levelElapsedTime = playerMovement.getElapsedTime();
+        _levelElapsedTime = Time.time - _levelStartTime;
         _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
         _visitedCheckpointsCount = newCheckpointManager.Instance.GetCheckpointCount();
 
@@ -135,20 +198,9 @@ public class SendToGoogle : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initializes references when the game starts.
-    /// </summary>
-    void Start()
+    public float GetLevelStartTime()
     {
-        // Find the PlayerMovement script in the scene
-        playerMovement = FindObjectOfType<PlayerMovement>();
-
-        // Find the BuildingInventoryManager script in the scene
-        buildingInventoryManager = FindObjectOfType<BuildingInventoryManager>();
-
-        // Get the current level index
-        _currentLevel = SceneManager.GetActiveScene().buildIndex;
-        // Debug.Log("currentlevel: "+_currentLevel);
+        return _levelStartTime;
     }
 
 
@@ -167,8 +219,8 @@ public class SendToGoogle : MonoBehaviour
 
         for (int i = 0; i < visitedCheckpoints.Count; i++)
         {
-            var cp = visitedCheckpoints[i];
-            Debug.Log($"Checkpoint #{i + 1} | Pos: {cp.position} | Time: {cp.timeReached:F2}s | Δ From Previous: {cp.timeSinceLastCheckpoint:F2}s");
+            CheckpointData cp = visitedCheckpoints[i];
+            Debug.Log($"Checkpoint #{i + 1} | Pos: {cp.CheckpointPosition} | Time: {cp.TimeReached:F2}s | Δ From Previous: {cp.TimeSinceLastCheckpoint:F2}s");
         }
 
         Debug.Log("===========================");

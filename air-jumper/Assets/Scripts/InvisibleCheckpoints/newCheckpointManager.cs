@@ -31,37 +31,40 @@ public class newCheckpointManager : MonoBehaviour
     /// Registers a checkpoint when the player reaches it.
     /// </summary>
     /// <param name="checkpointPosition">The position of the checkpoint.</param>
-    /// <returns>True if the checkpoint was registered, false if it was already visited.</returns>
     public void RegisterCheckpoint(Vector3 checkpointPosition)
-{
-    bool alreadyVisited = visitedCheckpoints.Exists(cp => cp.position == checkpointPosition);
-
-    if (!alreadyVisited)
     {
-        float currentTime = Time.time;
-        float timeSinceLast = 0f;
+        // Check if the checkpoint has already been visited
+        bool alreadyVisited = visitedCheckpoints.Exists(cp => Vector3.Distance(cp.CheckpointPosition, checkpointPosition) < 0.1f);
 
-        if (visitedCheckpoints.Count > 0)
+        if (!alreadyVisited)
         {
-            float lastTime = visitedCheckpoints[^1].timeReached;
-            timeSinceLast = currentTime - lastTime;
+            // Calculate the current time relative to the level start
+            float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime(); // Use SendToGoogle's level start time
+            float timeSinceLastCheckpoint = 0f;
+
+            // Calculate the time since the last checkpoint
+            if (visitedCheckpoints.Count > 0)
+            {
+                float lastTimeReached = visitedCheckpoints[^1].TimeReached;
+                timeSinceLastCheckpoint = currentTime - lastTimeReached;
+            }
+
+            // Create a new CheckpointData object and add it to the list
+            var checkpoint = new CheckpointData(checkpointPosition, currentTime, timeSinceLastCheckpoint);
+            visitedCheckpoints.Add(checkpoint);
+
+            Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime:F2}s (Δ {timeSinceLastCheckpoint:F2}s)");
         }
-
-        var checkpoint = new CheckpointData(checkpointPosition, currentTime, timeSinceLast);
-        visitedCheckpoints.Add(checkpoint);
-
-        Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime} (Δ {timeSinceLast} sec)");
     }
-}
 
 
     /// <summary>
     /// Returns the position of the last visited checkpoint.
     /// Returns Vector3.zero if no checkpoint has been visited.
     /// </summary>
-    public Vector3 GetLastCheckpoint()
+    public Vector3 GetLastCheckpointPosition()
     {
-        return visitedCheckpoints.Count > 0 ? visitedCheckpoints[^1].position : Vector3.zero;
+        return visitedCheckpoints.Count > 0 ? visitedCheckpoints[^1].CheckpointPosition : Vector3.zero;
     }
 
     /// <summary>

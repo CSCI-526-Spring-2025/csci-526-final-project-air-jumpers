@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float lastTapTimeA = 0;
     private float lastTapTimeD = 0;
 
-    private float startTime; // Stores the game start time
+    // private float startTime; // Stores the game start time
 
     private bool isWin;
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         UpdatePlatformCounter();
 
-        StartTime(); // Start the game timer
+        // StartTime(); // Start the game timer
     }
 
     void Update()
@@ -355,7 +355,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (newCheckpointManager.Instance.GetCheckpointCount() > 0)
         {
-            transform.position = newCheckpointManager.Instance.GetLastCheckpoint();
+            transform.position = newCheckpointManager.Instance.GetLastCheckpointPosition();
             Debug.Log("Respawned at: " + transform.position);
         }
         else
@@ -377,28 +377,28 @@ public class PlayerMovement : MonoBehaviour
         return platformCreated;
     }
 
-    /// <summary>
-    /// Starts the timer by recording the current game time.
-    /// This should be called when the game begins or when timing needs to be reset.
-    /// </summary>
-    void StartTime()
-    {
-        startTime = Time.time; // Store the current time as the start time
-    }
+    // /// <summary>
+    // /// Starts the timer by recording the current game time.
+    // /// This should be called when the game begins or when timing needs to be reset.
+    // /// </summary>
+    // void StartTime()
+    // {
+    //     startTime = Time.time; // Store the current time as the start time
+    // }
 
-    public float getStartTime()
-    {
-        return startTime;
-    }
+    // public float getStartTime()
+    // {
+    //     return startTime;
+    // }
 
-    /// <summary>
-    /// Retrieves the elapsed time since the timer started.
-    /// </summary>
-    /// <returns>The total elapsed time in seconds.</returns>
-    public float getElapsedTime()
-    {
-        return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
-    }
+    // /// <summary>
+    // /// Retrieves the elapsed time since the timer started.
+    // /// </summary>
+    // /// <returns>The total elapsed time in seconds.</returns>
+    // public float getElapsedTime()
+    // {
+    //     return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
+    // }
 
     public bool winCheck()
     {
