@@ -69,7 +69,10 @@ public class PlayerHealth : MonoBehaviour
         // FindObjectOfType<PlayerMovement>().RespawnPlayer();
 
         // Update the game over count in SendToGoogle
-        SendToGoogle.Instance.incrementGameOverCount();
+        if (SendToGoogle.Instance != null)
+        {
+            SendToGoogle.Instance.incrementGameOverCount();
+        }
 
         // New respawn logic has been added here
         FindObjectOfType<PlayerMovement>().Respawn();

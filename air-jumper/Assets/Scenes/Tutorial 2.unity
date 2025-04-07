@@ -2278,7 +2278,7 @@ PrefabInstance:
     - target: {fileID: 4975982730717596464, guid: 30b620a32b6065649ab400660d185073, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6e5c5113fd8975044be5e8d0654af480, type: 3}
+      objectReference: {fileID: 21300000, guid: 1f20a86d53c5abf44b47089cfc06687a, type: 3}
     - target: {fileID: 6614325627908374794, guid: 30b620a32b6065649ab400660d185073, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3122,7 +3122,7 @@ Transform:
   m_GameObject: {fileID: 1392724328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.53, y: -11.53, z: 0}
+  m_LocalPosition: {x: 14.53, y: -12.55, z: 0}
   m_LocalScale: {x: 20.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4743,6 +4743,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 232251947}
   initPlatformCount: 0
+  winText: {fileID: 0}
 --- !u!50 &2063767278
 Rigidbody2D:
   serializedVersion: 4
@@ -5751,7 +5752,7 @@ Transform:
   m_GameObject: {fileID: 4993120322500846793}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.94, y: -11.14, z: -0.5188948}
+  m_LocalPosition: {x: 8.94, y: -12.19, z: -0.5188948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private int platformCount = 1;
-
+    public GameObject winText;
     // platformCount tracks how many platforms are left to be created
     // private int platformCount = 10; 
 
@@ -116,7 +116,11 @@ public class PlayerMovement : MonoBehaviour
             jumpTimes -= 1;
 
             // Update the player jump count
-            SendToGoogle.Instance.IncrementPlayerJumpCount();
+            if (SendToGoogle.Instance != null)
+            {
+                SendToGoogle.Instance.IncrementPlayerJumpCount();
+            }
+            
 
             if (jumpTimes == 0)
             {
@@ -271,6 +275,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("WinFlag"))
         {
             WinGame();
@@ -320,6 +325,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("load next scene");
             StartCoroutine(LoadSceneAsync(nextSceneIndex));
         }
+        else{
+            Debug.Log("No more scenes to load");
+            winText.gameObject.SetActive(true);
+        }
+       
     }
 
     System.Collections.IEnumerator LoadSceneAsync(int sceneIndex)
