@@ -33,10 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
     // private float startTime; // Stores the game start time
 
-    private bool isWin;
-
-    private SendToGoogle sendToGoogle; // SendToGoogle Object Initialization
-
 
     /*
     Pending development here to store the visited checkpoint in to a
@@ -303,7 +299,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("You Win!");
 
         // Update the win status
-        isWin = true;
+        SendToGoogle.Instance.SetIsCurrentWin(true);
+        
         //Advance to the next level
         LoadNextSceneAsync();
 
@@ -401,11 +398,6 @@ public class PlayerMovement : MonoBehaviour
     // {
     //     return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
     // }
-
-    public bool winCheck()
-    {
-        return isWin;
-    }
 
     public bool IsFacingRight()
     {

@@ -52,6 +52,12 @@ public class SendToGoogle : MonoBehaviour
     // Track the number of building platforms created by the player
     private int _buildingPlatformCount;
 
+    private float _timeToFlag;
+
+    private int _jumpsToFlag;
+
+    private bool _isCurrentWin;
+
 
 
     // private int _collectiblesCount;
@@ -102,6 +108,7 @@ public class SendToGoogle : MonoBehaviour
         // Reset the level start time and other variables
         _levelStartTime = Time.time;
         _newPlatformCount = 0;
+        _buildingPlatformCount = 0;
         _visitedCheckpointsCount = 0;
         _jumpCount = 0;
         _gameOverCount = 0;
@@ -120,6 +127,8 @@ public class SendToGoogle : MonoBehaviour
 
         // Find the BuildingInventoryManager script in the scene
         buildingInventoryManager = FindObjectOfType<BuildingInventoryManager>();
+
+        _isCurrentWin = false;
 
     }
 
@@ -167,36 +176,40 @@ public class SendToGoogle : MonoBehaviour
         string totalJumpCount,
         string levelIndex,
         string totalCheckpointsCount,
+        string timeToFlag,
+        string jumpsToFlag,
         List<CheckpointData> checkpoints
     )
     {
         WWWForm form = new WWWForm();
         form.AddField("entry.966881002", sessionID);
+        form.AddField("entry.1675831419", levelIndex);
         form.AddField("entry.284206206", newPlatformCount);
         form.AddField("entry.584068264", levelElapsedTime);
         form.AddField("entry.590539203", gameOverCount);
         form.AddField("entry.1928445101", totalJumpCount);
-        form.AddField("entry.1675831419", levelIndex);
         form.AddField("entry.1523872719", totalCheckpointsCount);
 
 
         if (checkpoints.Count > 0)
         {
-            form.AddField("entry.506983593", checkpoints[0].TimeReached.ToString("F2")); // Time to Checkpoint 1
-            form.AddField("entry.1978712205", checkpoints[0].TotalJumps.ToString()); // Jumps to Checkpoint 1
+            form.AddField("entry.506983593", checkpoints[0].TimeSinceLastCheckpoint.ToString("F2")); // Time to Checkpoint 1
+            form.AddField("entry.1978712205", checkpoints[0].JumpsSinceLastCheckpoint.ToString()); // Jumps to Checkpoint 1
         }
         if (checkpoints.Count > 1)
         {
-            form.AddField("entry.395522138", checkpoints[1].TimeReached.ToString("F2")); // Time to Checkpoint 2
-            form.AddField("entry.1852573121", checkpoints[1].TotalJumps.ToString()); // Jumps to Checkpoint 2
+            form.AddField("entry.395522138", checkpoints[1].TimeSinceLastCheckpoint.ToString("F2")); // Time to Checkpoint 2
+            form.AddField("entry.1852573121", checkpoints[1].JumpsSinceLastCheckpoint.ToString()); // Jumps to Checkpoint 2
         }
         if (checkpoints.Count > 2)
         {
-            form.AddField("entry.231943560", checkpoints[2].TimeReached.ToString("F2")); // Time to Checkpoint 3
-            form.AddField("entry.269494519", checkpoints[2].TotalJumps.ToString()); // Jumps to Checkpoint 3
+            form.AddField("entry.231943560", checkpoints[2].TimeSinceLastCheckpoint.ToString("F2")); // Time to Checkpoint 3
+            form.AddField("entry.269494519", checkpoints[2].JumpsSinceLastCheckpoint.ToString()); // Jumps to Checkpoint 3
         }
 
         // Debug.Log(sessionID);
+        form.AddField("entry.2004975838", timeToFlag);
+        form.AddField("entry.743130684", jumpsToFlag);
 
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
@@ -226,6 +239,23 @@ public class SendToGoogle : MonoBehaviour
         _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
         _visitedCheckpointsCount = newCheckpointManager.Instance.GetCheckpointCount();
 
+        _timeToFlag = -1;
+        _jumpsToFlag = -1;
+
+        if (_isCurrentWin) {
+            if (_visitedCheckpoints.Count > 0)
+            {
+                CheckpointData lastCheckpoint = _visitedCheckpoints[^1];
+                _timeToFlag = _levelElapsedTime - lastCheckpoint.TimeReached;
+                _jumpsToFlag = _jumpCount - lastCheckpoint.TotalJumps;
+            }
+            else
+            {
+                _timeToFlag = Time.time - _levelStartTime;
+                _jumpsToFlag = _jumpCount;
+            }
+        }
+
         // For Debug Purposes
         // DebugPrintAllCheckpoints(_visitedCheckpoints);
 
@@ -238,6 +268,8 @@ public class SendToGoogle : MonoBehaviour
             _jumpCount.ToString(),
             _currentLevel.ToString(),
             _visitedCheckpointsCount.ToString(),
+            _timeToFlag.ToString("F2"),
+            _jumpsToFlag.ToString(),
             _visitedCheckpoints
         ));
     }
@@ -248,7 +280,7 @@ public class SendToGoogle : MonoBehaviour
     /// </summary>
     private void OnApplicationQuit()
     {
-        if (playerMovement.getPlatformCreated() >= 4 && !playerMovement.winCheck())
+        if (playerMovement.getPlatformCreated() >= 4 && !_isCurrentWin)
         {
             // Debug.Log(playerMovement.getPlatformCount());
             Debug.Log("Game is quitting. Sending analytics...");
@@ -285,6 +317,11 @@ public class SendToGoogle : MonoBehaviour
     public int GetJumpCount()
     {
         return _jumpCount;
+    }
+
+    public void SetIsCurrentWin(bool status)
+    {
+        _isCurrentWin = status;
     }
 
 

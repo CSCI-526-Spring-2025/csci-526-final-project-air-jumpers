@@ -41,22 +41,37 @@ public class newCheckpointManager : MonoBehaviour
             // Calculate the current time relative to the level start
             float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime();
             float timeSinceLastCheckpoint = 0f;
+            int jumpsSinceLastCheckpoint = 0;
 
-            // Calculate the time since the last checkpoint
+            // Calculate the time and jumps since the last checkpoint
             if (visitedCheckpoints.Count > 0)
             {
-                float lastTimeReached = visitedCheckpoints[^1].TimeReached;
-                timeSinceLastCheckpoint = currentTime - lastTimeReached;
+                // For subsequent checkpoints
+                CheckpointData lastCheckpoint = visitedCheckpoints[^1];
+                timeSinceLastCheckpoint = currentTime - lastCheckpoint.TimeReached;
+                jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount() - lastCheckpoint.TotalJumps;
+            }
+            else
+            {
+                // For the first checkpoint
+                timeSinceLastCheckpoint = currentTime; // Time since level start
+                jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount(); // Total jumps since level start
             }
 
             // Get the total number of jumps from PlayerMovement
             int totalJumps = SendToGoogle.Instance.GetJumpCount();
 
             // Create a new CheckpointData object and add it to the list
-            var checkpoint = new CheckpointData(checkpointPosition, currentTime, timeSinceLastCheckpoint, totalJumps);
+            var checkpoint = new CheckpointData(
+                checkpointPosition,
+                currentTime,
+                timeSinceLastCheckpoint,
+                totalJumps,
+                jumpsSinceLastCheckpoint
+            );
             visitedCheckpoints.Add(checkpoint);
 
-            Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime:F2}s (Δ {timeSinceLastCheckpoint:F2}s, Total Jumps: {totalJumps})");
+            Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime:F2}s (Δ {timeSinceLastCheckpoint:F2}s, Total Jumps: {totalJumps}, Jumps Since Last Checkpoint: {jumpsSinceLastCheckpoint})");
         }
     }
 
