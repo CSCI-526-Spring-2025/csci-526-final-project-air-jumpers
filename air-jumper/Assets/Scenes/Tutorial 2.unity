@@ -3167,7 +3167,7 @@ Transform:
   m_GameObject: {fileID: 1392724328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.53, y: -11.53, z: 0}
+  m_LocalPosition: {x: 14.53, y: -12.55, z: 0}
   m_LocalScale: {x: 20.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4788,6 +4788,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 232251947}
   initPlatformCount: 0
+  WinText: {fileID: 0}
 --- !u!50 &2063767278
 Rigidbody2D:
   serializedVersion: 4
@@ -5796,7 +5797,7 @@ Transform:
   m_GameObject: {fileID: 4993120322500846793}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.94, y: -11.14, z: -0.5188948}
+  m_LocalPosition: {x: 8.94, y: -12.19, z: -0.5188948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
