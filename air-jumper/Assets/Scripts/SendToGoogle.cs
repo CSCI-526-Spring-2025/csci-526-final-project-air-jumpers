@@ -29,7 +29,10 @@ public class SendToGoogle : MonoBehaviour
     private float _levelElapsedTime;
 
     // Track the numbers of platforms created by the player
-    private int _newPlatformCount;
+    private int _regularPlatformCount;
+
+    // Track the number of building platforms created by the player
+    private int _buildingPlatformCount;
 
     // Track the number of checkpoints reached by the player
     private int _visitedCheckpointsCount;
@@ -48,9 +51,6 @@ public class SendToGoogle : MonoBehaviour
 
     // Track which level player is currently in
     private int _currentLevel;
-
-    // Track the number of building platforms created by the player
-    private int _buildingPlatformCount;
 
     private float _timeToFlag;
 
@@ -107,12 +107,14 @@ public class SendToGoogle : MonoBehaviour
 
         // Reset the level start time and other variables
         _levelStartTime = Time.time;
-        _newPlatformCount = 0;
+        _regularPlatformCount = 0;
         _buildingPlatformCount = 0;
         _visitedCheckpointsCount = 0;
         _jumpCount = 0;
         _gameOverCount = 0;
         _visitedCheckpoints.Clear();
+
+        _isCurrentWin = false;
 
         Debug.Log($"New level loaded: {_currentLevel}. Timer reset.");
     }
@@ -127,8 +129,6 @@ public class SendToGoogle : MonoBehaviour
 
         // Find the BuildingInventoryManager script in the scene
         buildingInventoryManager = FindObjectOfType<BuildingInventoryManager>();
-
-        _isCurrentWin = false;
 
     }
 
@@ -170,6 +170,8 @@ public class SendToGoogle : MonoBehaviour
 
     private IEnumerator Post(
         string sessionID,
+        string regularPlatformCount,
+        string buildingPlatformCount,
         string newPlatformCount,
         string levelElapsedTime,
         string gameOverCount,
@@ -184,6 +186,8 @@ public class SendToGoogle : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("entry.966881002", sessionID);
         form.AddField("entry.1675831419", levelIndex);
+        form.AddField("entry.658958453", regularPlatformCount);
+        form.AddField("entry.1437710148", buildingPlatformCount);
         form.AddField("entry.284206206", newPlatformCount);
         form.AddField("entry.584068264", levelElapsedTime);
         form.AddField("entry.590539203", gameOverCount);
@@ -231,9 +235,8 @@ public class SendToGoogle : MonoBehaviour
     /// </summary>
     public void Send()
     {
-        _newPlatformCount = playerMovement.getPlatformCreated();
-        _buildingPlatformCount = buildingInventoryManager.getPlacedPlatformsCount();
-        int totalPlatformCount = _newPlatformCount + _buildingPlatformCount;
+        // _regularPlatformCount = playerMovement.getPlatformCreated();
+       int totalPlatformCount = _regularPlatformCount + _buildingPlatformCount;
 
         _levelElapsedTime = Time.time - _levelStartTime;
         _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
@@ -259,9 +262,11 @@ public class SendToGoogle : MonoBehaviour
         // For Debug Purposes
         // DebugPrintAllCheckpoints(_visitedCheckpoints);
 
-        // StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _visitedCheckpointsCount.ToString(), _levelElapsedTime.ToString("F2")));
+        // StartCoroutine(Post(_sessionID.ToString(), _regularPlatformCount.ToString(), _visitedCheckpointsCount.ToString(), _levelElapsedTime.ToString("F2")));
         StartCoroutine(Post(
             _sessionID.ToString(),
+            _regularPlatformCount.ToString(),
+            _buildingPlatformCount.ToString(),
             totalPlatformCount.ToString(),
             _levelElapsedTime.ToString("F2"),
             _gameOverCount.ToString(),
@@ -291,6 +296,21 @@ public class SendToGoogle : MonoBehaviour
     public float GetLevelStartTime()
     {
         return _levelStartTime;
+    }
+
+    public void incrementRegularPlatformCount()
+    {
+        _regularPlatformCount++;
+    }
+
+    public void incrementBuildingPlatformCount()
+    {
+        _buildingPlatformCount++;
+    }
+
+    public void decrementBuildingPlatformCount()
+    {
+        _buildingPlatformCount--;
     }
 
     /// <summary>

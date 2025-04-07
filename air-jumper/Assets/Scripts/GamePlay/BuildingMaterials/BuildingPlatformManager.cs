@@ -40,6 +40,9 @@ public class BuildingPlatformManager : MonoBehaviour
     {
         BuildingInventoryManager.Instance.AddBuildingMaterial(materialData);
         Destroy(materialInstance);
+
+        // Decrement the building platform count
+        SendToGoogle.Instance.decrementBuildingPlatformCount();
     }
 
     private void CreateButton()

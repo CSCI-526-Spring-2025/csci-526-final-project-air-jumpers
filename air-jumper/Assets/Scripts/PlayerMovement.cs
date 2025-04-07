@@ -151,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
         platformCreated++;
         UpdatePlatformCounter();
 
+        SendToGoogle.Instance.incrementRegularPlatformCount();
+
         if (platformCount == 0)
         {
             FindObjectOfType<GameOverManager>().StartGameOverTimer();
