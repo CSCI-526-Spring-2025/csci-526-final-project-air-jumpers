@@ -42,7 +42,10 @@ public class BuildingPlatformManager : MonoBehaviour
         Destroy(materialInstance);
 
         // Decrement the building platform count
-        SendToGoogle.Instance.decrementBuildingPlatformCount();
+        if (SendToGoogle.Instance != null)
+        {
+            SendToGoogle.Instance.decrementBuildingPlatformCount();
+        }
     }
 
     private void CreateButton()

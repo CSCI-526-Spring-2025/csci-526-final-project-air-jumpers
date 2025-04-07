@@ -57,9 +57,12 @@ public class BuildingInventoryManager : MonoBehaviour
         if (materials.ContainsKey(material) && materials[material] >= amount)
         {
             // Decrease building platform count
-            SendToGoogle.Instance.incrementBuildingPlatformCount();
+            if (SendToGoogle.Instance != null)
+            {
+                SendToGoogle.Instance?.incrementBuildingPlatformCount();
+            }
 
-             // Decrease the material count
+            // Decrease the material count
             materials[material] -= amount;
             OnMaterialUpdated?.Invoke(material, materials[material]);
             return true;
