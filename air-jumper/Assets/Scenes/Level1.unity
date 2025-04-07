@@ -4654,6 +4654,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level1
       objectReference: {fileID: 0}
+    - target: {fileID: 7066796501002247069, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955416521454338727, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8379751500285559200, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: times
       value: 3
@@ -5231,6 +5239,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 232251947}
   initPlatformCount: 1
+  WinText: {fileID: 0}
 --- !u!50 &2063767278
 Rigidbody2D:
   serializedVersion: 4
