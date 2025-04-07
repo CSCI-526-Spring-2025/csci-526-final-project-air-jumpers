@@ -245,6 +245,8 @@ public class SendToGoogle : MonoBehaviour
         _timeToFlag = -1;
         _jumpsToFlag = -1;
 
+        Debug.Log("Game Over Count(in Send() from sendtogoogle): " + _gameOverCount);
+
         if (_isCurrentWin) {
             if (_visitedCheckpoints.Count > 0)
             {
@@ -319,6 +321,7 @@ public class SendToGoogle : MonoBehaviour
     public void incrementGameOverCount()
     {
         _gameOverCount++;
+        Debug.Log("Game Over Count: " + _gameOverCount);
     }
 
     /// <summary>

@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float lastTapTimeD = 0;
 
     // private float startTime; // Stores the game start time
+    private Vector3 startPosition;
 
 
     /*
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         UpdatePlatformCounter();
 
         // StartTime(); // Start the game timer
+        startPosition = transform.position;
     }
 
     void Update()
@@ -371,9 +373,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            
-            Debug.Log("No checkpoint found. Respawn at default position.");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            transform.position = startPosition;
+            Debug.Log("Respawned at start position since not checkpoint: " + startPosition);
         }
     }
 
