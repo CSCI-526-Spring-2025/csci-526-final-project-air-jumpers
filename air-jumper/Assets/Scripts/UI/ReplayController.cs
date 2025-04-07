@@ -1,13 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controls the Replay Button functionality, allowing the player to restart the current level.
+/// </summary>
 public class ReplayController : MonoBehaviour
 {
-    // 此方法会在按钮点击时触发
+    /// <summary>
+    /// Called when the Replay Button is clicked.
+    /// Restarts the current level and clears any relevant game state.
+    /// </summary>
     public void ReplayGame()
     {
-        Time.timeScale = 1f; // 如果之前暂停过游戏，恢复时间流动
+        // Resume the game in case it was paused
+        Time.timeScale = 1f;
+
+        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // Clear the building inventory if applicable
         BuildingInventoryManager.Instance?.Clear();
     }
 }

@@ -70,8 +70,7 @@ public class GameOverManager : MonoBehaviour
         // Need work to retain same sessionId if the same user restart
 
         // Send the analytics for the same user after game over
-        sendToGoogle = FindObjectOfType<SendToGoogle>();
-        sendToGoogle.Send();
+        SendToGoogle.Instance.Send();
     }
 
     public void StopTimer()
