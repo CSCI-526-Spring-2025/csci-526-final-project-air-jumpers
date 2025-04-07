@@ -3472,7 +3472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press the button to turn off the laser for 15 seconds!
+  m_text: 'Press the button to turn off the laser for 30 seconds!
 
 
     Press V to
