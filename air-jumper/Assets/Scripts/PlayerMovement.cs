@@ -120,7 +120,11 @@ public class PlayerMovement : MonoBehaviour
             jumpTimes -= 1;
 
             // Update the player jump count
-            SendToGoogle.Instance.IncrementPlayerJumpCount();
+            if (SendToGoogle.Instance != null)
+            {
+                SendToGoogle.Instance.IncrementPlayerJumpCount();
+            }
+            
 
             if (jumpTimes == 0)
             {
