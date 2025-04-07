@@ -4443,7 +4443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 30
 --- !u!61 &950668404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6295,7 +6295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetLaser: {fileID: 698390339}
-  disableDuration: 15
+  disableDuration: 30
 --- !u!61 &1482048697
 BoxCollider2D:
   m_ObjectHideFlags: 0
