@@ -2463,7 +2463,7 @@ PrefabInstance:
     - target: {fileID: 4975982730717596464, guid: 30b620a32b6065649ab400660d185073, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6e5c5113fd8975044be5e8d0654af480, type: 3}
+      objectReference: {fileID: 21300000, guid: 1f20a86d53c5abf44b47089cfc06687a, type: 3}
     - target: {fileID: 6614325627908374794, guid: 30b620a32b6065649ab400660d185073, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5239,7 +5239,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 6368244986061709105, guid: cc4517a5cc1af4592ab0e528e6a76234, type: 3}
   platformCounterText: {fileID: 232251947}
   initPlatformCount: 1
-  WinText: {fileID: 0}
+  winText: {fileID: 0}
 --- !u!50 &2063767278
 Rigidbody2D:
   serializedVersion: 4
