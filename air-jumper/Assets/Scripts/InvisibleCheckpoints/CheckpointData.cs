@@ -23,15 +23,22 @@ public class CheckpointData
     public float TimeSinceLastCheckpoint { get; private set; }
 
     /// <summary>
+    /// The total number of jumps the player has made up to this checkpoint.
+    /// </summary>
+    public int TotalJumps { get; private set; }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="CheckpointData"/> class.
     /// </summary>
     /// <param name="position">The position of the checkpoint.</param>
     /// <param name="timeReached">The time the player reached this checkpoint.</param>
     /// <param name="timeSinceLastCheckpoint">The time elapsed since the last checkpoint.</param>
-    public CheckpointData(Vector3 position, float timeReached, float timeSinceLastCheckpoint)
+    /// <param name="totalJumps">The total number of jumps the player has made up to this checkpoint.</param>
+    public CheckpointData(Vector3 position, float timeReached, float timeSinceLastCheckpoint, int totalJumps)
     {
         CheckpointPosition = position;
         TimeReached = timeReached;
         TimeSinceLastCheckpoint = timeSinceLastCheckpoint;
+        TotalJumps = totalJumps;
     }
 }

@@ -134,13 +134,67 @@ public class SendToGoogle : MonoBehaviour
     /// <param name="reachedLevel">Highest level reached</param>
     /// /// <param name="levelElapsedTime">Time to finish one level</param>
     /// <returns>Coroutine that sends data asynchronously</returns>
-    private IEnumerator Post(string sessionID, string newPlatformCount, string reachedCheckpoints, string levelElapsedTime)
+    // private IEnumerator Post(string sessionID, string newPlatformCount, string reachedCheckpoints, string levelElapsedTime)
+    // {
+    //     WWWForm form = new WWWForm();
+    //     form.AddField("entry.595435075", sessionID);
+    //     form.AddField("entry.220358108", newPlatformCount);
+    //     form.AddField("entry.1107099891", reachedCheckpoints);
+    //     form.AddField("entry.2002507409", levelElapsedTime);
+
+    //     // Debug.Log(sessionID);
+
+
+    //     using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+    //     {
+    //         yield return www.SendWebRequest();
+    //         if (www.result != UnityWebRequest.Result.Success)
+    //         {
+    //             Debug.Log(www.error);
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Form upload complete!");
+    //         }
+    //     }
+    // }
+
+    private IEnumerator Post(
+        string sessionID,
+        string newPlatformCount,
+        string levelElapsedTime,
+        string gameOverCount,
+        string totalJumpCount,
+        string levelIndex,
+        string totalCheckpointsCount,
+        List<CheckpointData> checkpoints
+    )
     {
         WWWForm form = new WWWForm();
-        form.AddField("entry.595435075", sessionID);
-        form.AddField("entry.220358108", newPlatformCount);
-        form.AddField("entry.1107099891", reachedCheckpoints);
-        form.AddField("entry.2002507409", levelElapsedTime);
+        form.AddField("entry.966881002", sessionID);
+        form.AddField("entry.284206206", newPlatformCount);
+        form.AddField("entry.584068264", levelElapsedTime);
+        form.AddField("entry.590539203", gameOverCount);
+        form.AddField("entry.1928445101", totalJumpCount);
+        form.AddField("entry.1675831419", levelIndex);
+        form.AddField("entry.1523872719", totalCheckpointsCount);
+
+
+        if (checkpoints.Count > 0)
+        {
+            form.AddField("entry.506983593", checkpoints[0].TimeReached.ToString("F2")); // Time to Checkpoint 1
+            form.AddField("entry.1978712205", checkpoints[0].TotalJumps.ToString()); // Jumps to Checkpoint 1
+        }
+        if (checkpoints.Count > 1)
+        {
+            form.AddField("entry.395522138", checkpoints[1].TimeReached.ToString("F2")); // Time to Checkpoint 2
+            form.AddField("entry.1852573121", checkpoints[1].TotalJumps.ToString()); // Jumps to Checkpoint 2
+        }
+        if (checkpoints.Count > 2)
+        {
+            form.AddField("entry.231943560", checkpoints[2].TimeReached.ToString("F2")); // Time to Checkpoint 3
+            form.AddField("entry.269494519", checkpoints[2].TotalJumps.ToString()); // Jumps to Checkpoint 3
+        }
 
         // Debug.Log(sessionID);
 
@@ -166,6 +220,8 @@ public class SendToGoogle : MonoBehaviour
     {
         _newPlatformCount = playerMovement.getPlatformCreated();
         _buildingPlatformCount = buildingInventoryManager.getPlacedPlatformsCount();
+        int totalPlatformCount = _newPlatformCount + _buildingPlatformCount;
+
         _levelElapsedTime = Time.time - _levelStartTime;
         _visitedCheckpoints = newCheckpointManager.Instance.GetVisitedCheckpoints();
         _visitedCheckpointsCount = newCheckpointManager.Instance.GetCheckpointCount();
@@ -174,6 +230,16 @@ public class SendToGoogle : MonoBehaviour
         // DebugPrintAllCheckpoints(_visitedCheckpoints);
 
         // StartCoroutine(Post(_sessionID.ToString(), _newPlatformCount.ToString(), _visitedCheckpointsCount.ToString(), _levelElapsedTime.ToString("F2")));
+        StartCoroutine(Post(
+            _sessionID.ToString(),
+            totalPlatformCount.ToString(),
+            _levelElapsedTime.ToString("F2"),
+            _gameOverCount.ToString(),
+            _jumpCount.ToString(),
+            _currentLevel.ToString(),
+            _visitedCheckpointsCount.ToString(),
+            _visitedCheckpoints
+        ));
     }
 
     /// <summary>
@@ -211,6 +277,16 @@ public class SendToGoogle : MonoBehaviour
         _replayButtonClicked++;
     }
 
+    public void IncrementPlayerJumpCount()
+    {
+        _jumpCount++;
+    }
+
+    public int GetJumpCount()
+    {
+        return _jumpCount;
+    }
+
 
     /// <summary>
     /// Prints all visited checkpoints to the console for debugging purposes.
@@ -228,10 +304,9 @@ public class SendToGoogle : MonoBehaviour
         for (int i = 0; i < visitedCheckpoints.Count; i++)
         {
             CheckpointData cp = visitedCheckpoints[i];
-            Debug.Log($"Checkpoint #{i + 1} | Pos: {cp.CheckpointPosition} | Time: {cp.TimeReached:F2}s | Δ From Previous: {cp.TimeSinceLastCheckpoint:F2}s");
+            Debug.Log($"Checkpoint #{i + 1} | Pos: {cp.CheckpointPosition} | Time: {cp.TimeReached:F2}s | Δ From Previous: {cp.TimeSinceLastCheckpoint:F2}s | Total Jumps: {cp.TotalJumps}");
         }
 
         Debug.Log("===========================");
     }
-
 }

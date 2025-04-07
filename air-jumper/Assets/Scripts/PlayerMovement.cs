@@ -119,6 +119,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
 
+            // Update the player jump count
+            SendToGoogle.Instance.IncrementPlayerJumpCount();
+
             if (jumpTimes == 0)
             {
                 canSecondJump = false;
@@ -307,8 +310,7 @@ public class PlayerMovement : MonoBehaviour
         //GameManager.Instance.AdvanceToNextLevel();
 
         // Send the analytics for the same user after game over
-        sendToGoogle = FindObjectOfType<SendToGoogle>();
-        sendToGoogle.Send();
+        SendToGoogle.Instance.Send();
     }
 
     public void LoadNextSceneAsync()

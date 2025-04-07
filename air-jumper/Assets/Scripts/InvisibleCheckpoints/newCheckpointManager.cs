@@ -39,7 +39,7 @@ public class newCheckpointManager : MonoBehaviour
         if (!alreadyVisited)
         {
             // Calculate the current time relative to the level start
-            float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime(); // Use SendToGoogle's level start time
+            float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime();
             float timeSinceLastCheckpoint = 0f;
 
             // Calculate the time since the last checkpoint
@@ -49,11 +49,14 @@ public class newCheckpointManager : MonoBehaviour
                 timeSinceLastCheckpoint = currentTime - lastTimeReached;
             }
 
+            // Get the total number of jumps from PlayerMovement
+            int totalJumps = SendToGoogle.Instance.GetJumpCount();
+
             // Create a new CheckpointData object and add it to the list
-            var checkpoint = new CheckpointData(checkpointPosition, currentTime, timeSinceLastCheckpoint);
+            var checkpoint = new CheckpointData(checkpointPosition, currentTime, timeSinceLastCheckpoint, totalJumps);
             visitedCheckpoints.Add(checkpoint);
 
-            Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime:F2}s (Δ {timeSinceLastCheckpoint:F2}s)");
+            Debug.Log($"Checkpoint at {checkpointPosition} reached at {currentTime:F2}s (Δ {timeSinceLastCheckpoint:F2}s, Total Jumps: {totalJumps})");
         }
     }
 
