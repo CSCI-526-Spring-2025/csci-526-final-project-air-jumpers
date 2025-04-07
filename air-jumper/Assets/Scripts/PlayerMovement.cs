@@ -30,9 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private float dashInterval = 0.2f;
     private float lastTapTimeA = 0;
     private float lastTapTimeD = 0;
-
-    // private float startTime; // Stores the game start time
-
     private Vector3 startPosition;
 
 
