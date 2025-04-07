@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private int platformCount = 1;
-
+    public GameObject winText;
     // platformCount tracks how many platforms are left to be created
     // private int platformCount = 10; 
 
@@ -30,12 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashInterval = 0.2f;
     private float lastTapTimeA = 0;
     private float lastTapTimeD = 0;
-
-    private float startTime; // Stores the game start time
-
-    private bool isWin;
-
-    private SendToGoogle sendToGoogle; // SendToGoogle Object Initialization
+    private Vector3 startPosition;
 
 
     /*
@@ -55,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         UpdatePlatformCounter();
 
-        StartTime(); // Start the game timer
+        // StartTime(); // Start the game timer
+        startPosition = transform.position;
     }
 
     void Update()
@@ -119,6 +115,13 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
 
+            // Update the player jump count
+            if (SendToGoogle.Instance != null)
+            {
+                SendToGoogle.Instance.IncrementPlayerJumpCount();
+            }
+            
+
             if (jumpTimes == 0)
             {
                 canSecondJump = false;
@@ -147,6 +150,8 @@ public class PlayerMovement : MonoBehaviour
         platformCount--;
         platformCreated++;
         UpdatePlatformCounter();
+
+        SendToGoogle.Instance.incrementRegularPlatformCount();
 
         if (platformCount == 0)
         {
@@ -272,6 +277,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("WinFlag"))
         {
             WinGame();
@@ -300,15 +306,15 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("You Win!");
 
         // Update the win status
-        isWin = true;
+        SendToGoogle.Instance.SetIsCurrentWin(true);
+        
         //Advance to the next level
         LoadNextSceneAsync();
 
         //GameManager.Instance.AdvanceToNextLevel();
 
         // Send the analytics for the same user after game over
-        sendToGoogle = FindObjectOfType<SendToGoogle>();
-        sendToGoogle.Send();
+        SendToGoogle.Instance.Send();
     }
 
     public void LoadNextSceneAsync()
@@ -321,6 +327,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("load next scene");
             StartCoroutine(LoadSceneAsync(nextSceneIndex));
         }
+        else{
+            Debug.Log("No more scenes to load");
+            winText.gameObject.SetActive(true);
+        }
+       
     }
 
     System.Collections.IEnumerator LoadSceneAsync(int sceneIndex)
@@ -355,14 +366,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (newCheckpointManager.Instance.GetCheckpointCount() > 0)
         {
-            transform.position = newCheckpointManager.Instance.GetLastCheckpoint();
+            transform.position = newCheckpointManager.Instance.GetLastCheckpointPosition();
             Debug.Log("Respawned at: " + transform.position);
         }
         else
         {
-            
-            Debug.Log("No checkpoint found. Respawn at default position.");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            transform.position = startPosition;
+            Debug.Log("Respawned at start position since not checkpoint: " + startPosition);
         }
     }
 
@@ -377,33 +387,28 @@ public class PlayerMovement : MonoBehaviour
         return platformCreated;
     }
 
-    /// <summary>
-    /// Starts the timer by recording the current game time.
-    /// This should be called when the game begins or when timing needs to be reset.
-    /// </summary>
-    void StartTime()
-    {
-        startTime = Time.time; // Store the current time as the start time
-    }
+    // /// <summary>
+    // /// Starts the timer by recording the current game time.
+    // /// This should be called when the game begins or when timing needs to be reset.
+    // /// </summary>
+    // void StartTime()
+    // {
+    //     startTime = Time.time; // Store the current time as the start time
+    // }
 
-    public float getStartTime()
-    {
-        return startTime;
-    }
+    // public float getStartTime()
+    // {
+    //     return startTime;
+    // }
 
-    /// <summary>
-    /// Retrieves the elapsed time since the timer started.
-    /// </summary>
-    /// <returns>The total elapsed time in seconds.</returns>
-    public float getElapsedTime()
-    {
-        return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
-    }
-
-    public bool winCheck()
-    {
-        return isWin;
-    }
+    // /// <summary>
+    // /// Retrieves the elapsed time since the timer started.
+    // /// </summary>
+    // /// <returns>The total elapsed time in seconds.</returns>
+    // public float getElapsedTime()
+    // {
+    //     return Time.time - startTime; // Calculate elapsed time by subtracting startTime from the current time
+    // }
 
     public bool IsFacingRight()
     {
