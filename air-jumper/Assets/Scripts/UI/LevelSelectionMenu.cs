@@ -23,5 +23,7 @@ public class LevelSelectionMenu : MonoBehaviour
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
+        Time.timeScale = 1;
+        BuildingInventoryManager.Instance?.Clear();
     }
 }
