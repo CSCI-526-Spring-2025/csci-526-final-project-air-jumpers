@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 SendToGoogle.Instance.IncrementPlayerJumpCount();
             }
-            
+
 
             if (jumpTimes == 0)
             {
@@ -151,7 +151,10 @@ public class PlayerMovement : MonoBehaviour
         platformCreated++;
         UpdatePlatformCounter();
 
-        SendToGoogle.Instance.incrementRegularPlatformCount();
+        if (SendToGoogle.Instance != null)
+        {
+            SendToGoogle.Instance.incrementRegularPlatformCount();
+        }
 
         if (platformCount == 0)
         {
@@ -305,16 +308,16 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameOverManager>().StopTimer();
         Debug.Log("You Win!");
 
-        // Update the win status
-        SendToGoogle.Instance.SetIsCurrentWin(true);
-        
+        if (SendToGoogle.Instance != null)
+        {
+            // Update the win status
+            SendToGoogle.Instance.SetIsCurrentWin(true);
+            // Send the analytics for the same user after game over
+            SendToGoogle.Instance.Send();
+        }
+
         //Advance to the next level
         LoadNextSceneAsync();
-
-        //GameManager.Instance.AdvanceToNextLevel();
-
-        // Send the analytics for the same user after game over
-        SendToGoogle.Instance.Send();
     }
 
     public void LoadNextSceneAsync()
@@ -327,11 +330,12 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("load next scene");
             StartCoroutine(LoadSceneAsync(nextSceneIndex));
         }
-        else{
+        else
+        {
             Debug.Log("No more scenes to load");
             winText.gameObject.SetActive(true);
         }
-       
+
     }
 
     System.Collections.IEnumerator LoadSceneAsync(int sceneIndex)
@@ -371,8 +375,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            transform.position = startPosition;
-            Debug.Log("Respawned at start position since not checkpoint: " + startPosition);
+
+            Debug.Log("No checkpoint found. Respawn at default position.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
