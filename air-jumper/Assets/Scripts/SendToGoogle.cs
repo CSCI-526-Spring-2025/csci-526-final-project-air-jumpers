@@ -182,7 +182,8 @@ public class SendToGoogle : MonoBehaviour
         string totalCheckpointsCount,
         string timeToFlag,
         string jumpsToFlag,
-        List<CheckpointData> checkpoints
+        List<CheckpointData> checkpoints,
+        List<int> _healthAfterKills
     )
     {
         WWWForm form = new WWWForm();
@@ -279,7 +280,8 @@ public class SendToGoogle : MonoBehaviour
             _visitedCheckpointsCount.ToString(),
             _timeToFlag.ToString("F2"),
             _jumpsToFlag.ToString(),
-            _visitedCheckpoints
+            _visitedCheckpoints,
+            _healthAfterKills
         ));
     }
 
