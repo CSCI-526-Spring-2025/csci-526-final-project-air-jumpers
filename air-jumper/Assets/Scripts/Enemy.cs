@@ -37,30 +37,13 @@ public class Enemy : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
-        ModifyColor();
-    }
-
-    private void ModifyColor()
-    {
-        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-        if (renderer == null)
+        if (collectibleType == CollectibleType.b_BlockCollectible)
         {
-            return;
-        }
-
-        switch (collectibleType)
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        } 
+        else if (collectibleType == CollectibleType.b_GunCollectible)
         {
-            case CollectibleType.b_BlockCollectible:
-                renderer.color = Color.green;
-                break;
-            case CollectibleType.b_GunCollectible:
-                renderer.color = Color.red;
-                break;
-            case CollectibleType.b_DashCollectible:
-                renderer.color = Color.blue;
-                break;
-            default:
-                break;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
