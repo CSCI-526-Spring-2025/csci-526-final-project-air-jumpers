@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - Button
   - Laser
+  - EnemyHitbox
   layers:
   - Default
   - TransparentFX

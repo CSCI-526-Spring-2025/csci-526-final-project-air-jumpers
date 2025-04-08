@@ -63,17 +63,21 @@ public class PlayerAttack : MonoBehaviour
         }
 
         Vector2 attackPosition = attackPoint.position;
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPosition, attackSize, 0, enemyLayer);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackPosition, attackSize, 0, enemyLayer);
 
-        foreach (Collider2D enemy in hitEnemies)
+        foreach (Collider2D col in hitColliders)
         {
-            Enemy enemyScript = enemy.GetComponent<Enemy>();
-            if (enemyScript != null)
+            if (col.CompareTag("EnemyHitbox"))
             {
-                enemyScript.TakeDamage(attackDamage);
+                Enemy enemyScript = col.GetComponentInParent<Enemy>();
+                if (enemyScript != null)
+                {
+                    enemyScript.TakeDamage(attackDamage);
+                }
             }
         }
     }
+
 
     public void FlipAttackPoint()
     {
