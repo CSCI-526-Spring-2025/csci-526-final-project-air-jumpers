@@ -104,7 +104,10 @@ public class Enemy : MonoBehaviour
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)
         {
-            SendToGoogle.Instance?.RecordHealthAfterKill(playerHealth.GetPlayerHealth());
+            if (SendToGoogle.Instance != null)
+            {
+                SendToGoogle.Instance.RecordHealthAfterKill(playerHealth.GetPlayerHealth());
+            }
         }
 
         Destroy(gameObject);
