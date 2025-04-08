@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public float maxHealth = 100f;
-    private float currentHealth;
+    public int maxHealth = 100;
+    private int currentHealth;
 
     [Header("Health Bar UI")]
     public Slider healthBarSlider;
@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (Time.time >= lastDamageTime + damageCooldown)
         {
@@ -81,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void Heal(float healAmount)
+    public void Heal(int healAmount)
     {
         currentHealth += healAmount;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
@@ -92,11 +92,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            TakeDamage(40f);
+            TakeDamage(30);
         }
         else if (collision.CompareTag("Spike"))
         {
-            TakeDamage(60f);
+            TakeDamage(40);
             Knockback(collision.transform.position);
         }
         else if(collision.CompareTag("Laser"))
@@ -120,5 +120,10 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
+    }
+
+    public int GetPlayerHealth()
+    {
+        return currentHealth;
     }
 }

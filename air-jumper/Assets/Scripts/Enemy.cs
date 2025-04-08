@@ -118,20 +118,14 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         CollectibleSpawner.Instance.SpawnCollectible(collectibleType, transform.position, collectibleNum);
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            SendToGoogle.Instance?.RecordHealthAfterKill(playerHealth.GetPlayerHealth());
+        }
 
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(30f);
-            }
-        }
-    }
 
 }
