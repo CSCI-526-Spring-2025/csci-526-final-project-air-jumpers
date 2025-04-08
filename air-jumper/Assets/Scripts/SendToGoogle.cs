@@ -58,6 +58,8 @@ public class SendToGoogle : MonoBehaviour
 
     private bool _isCurrentWin;
 
+    private List<int> _healthAfterKills = new List<int>();
+
 
 
     // private int _collectiblesCount;
@@ -368,5 +370,10 @@ public class SendToGoogle : MonoBehaviour
         }
 
         Debug.Log("===========================");
+    }
+
+    public void RecordHealthAfterKill(int currentHealth)
+    {
+        _healthAfterKills.Add(currentHealth);
     }
 }
