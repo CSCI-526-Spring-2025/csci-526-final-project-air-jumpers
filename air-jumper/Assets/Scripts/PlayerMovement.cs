@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private float lastTapTimeD = 0;
     private Vector3 startPosition;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
 
     /*
     Pending development here to store the visited checkpoint in to a
@@ -52,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
         // StartTime(); // Start the game timer
         startPosition = transform.position;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             SpawnPlatform();
         }
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
     }
 
     void MovePlayer()
@@ -131,7 +137,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
+        
         facingRight = !facingRight;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipX = !facingRight;
+        }
         PlayerAttack attack = GetComponent<PlayerAttack>();
         if (attack != null)
         {
