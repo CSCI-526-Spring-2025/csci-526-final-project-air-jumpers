@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private List<Checkpoint> visitedCheckpoints;
 
     private List<Action> currentPlatformEffects = new List<Action>();
+    private bool isJumping;
 
     void Start()
     {
@@ -66,8 +67,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && !isOnPlatform && platformCount > 0)
         {
             SpawnPlatform();
+            animator.Play("Player_Platform");
         }
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        isJumping = !(isGrounded || isOnPlatform);
+        animator.SetBool("IsJumping", isJumping);
     }
 
     void MovePlayer()
