@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private float lastTapTimeD = 0;
     private Vector3 startPosition;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
 
     /*
     Pending development here to store the visited checkpoint in to a
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private List<Checkpoint> visitedCheckpoints;
 
     private List<Action> currentPlatformEffects = new List<Action>();
+    private bool isJumping;
 
     void Start()
     {
@@ -52,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
         // StartTime(); // Start the game timer
         startPosition = transform.position;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -61,7 +67,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && !isOnPlatform && platformCount > 0)
         {
             SpawnPlatform();
+            animator.Play("Player_Platform");
         }
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        isJumping = !(isGrounded || isOnPlatform);
+        animator.SetBool("IsJumping", isJumping);
     }
 
     void MovePlayer()
@@ -131,7 +141,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
+        
         facingRight = !facingRight;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipX = !facingRight;
+        }
         PlayerAttack attack = GetComponent<PlayerAttack>();
         if (attack != null)
         {

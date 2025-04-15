@@ -31,8 +31,6 @@ public class TutorialManager : MonoBehaviour
 
     void OnCollectibeCollected(CollectibleType collectibleType, Vector3 pos)
     {
-        Debug.Log(currentLevel);
-
         if (currentLevel == "Tutorial1")
         {
             if (collectibleType == CollectibleType.s_PlatformCollectible)
