@@ -2390,6 +2390,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4373950618686558543, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: platformCounterText
+      value: 
+      objectReference: {fileID: 232251947}
+    - target: {fileID: 6092001578919305432, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6871378345819762107, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2397,6 +2405,10 @@ PrefabInstance:
     - target: {fileID: 6871378345819762107, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920967030313157331, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
