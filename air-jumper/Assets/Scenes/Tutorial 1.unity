@@ -2184,6 +2184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1348233395}
   - component: {fileID: 1348233394}
+  - component: {fileID: 1348233396}
   m_Layer: 0
   m_Name: BetaAnalytics
   m_TagString: Untagged
@@ -2219,6 +2220,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348233396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348233393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee035b9e6745349fdbc946e82c206722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endpoint: http://localhost:8000/analytics
 --- !u!1 &1363715488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6614325627908374794, guid: 30b620a32b6065649ab400660d185073, type: 3}
