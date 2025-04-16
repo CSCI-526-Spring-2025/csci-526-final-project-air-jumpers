@@ -131,6 +131,11 @@ public class PlayerMovement : MonoBehaviour
                 SendToGoogle.Instance.IncrementPlayerJumpCount();
             }
 
+            if (SendAnalytics.Instance != null)
+            {
+                SendAnalytics.Instance.IncrementPlayerJumpCount();
+            }
+
 
             if (jumpTimes == 0)
             {
@@ -169,6 +174,11 @@ public class PlayerMovement : MonoBehaviour
         if (SendToGoogle.Instance != null)
         {
             SendToGoogle.Instance.incrementRegularPlatformCount();
+        }
+
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.incrementRegularPlatformCount();
         }
 
         if (platformCount == 0)
@@ -329,6 +339,14 @@ public class PlayerMovement : MonoBehaviour
             SendToGoogle.Instance.SetIsCurrentWin(true);
             // Send the analytics for the same user after game over
             SendToGoogle.Instance.Send();
+        }
+
+        if (SendAnalytics.Instance != null)
+        {
+            // Update the win status
+            SendAnalytics.Instance.SetIsCurrentWin(true);
+            // Send the analytics for the same user after game over
+            SendAnalytics.Instance.Send();
         }
 
         //Advance to the next level

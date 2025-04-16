@@ -46,6 +46,11 @@ public class BuildingPlatformManager : MonoBehaviour
         {
             SendToGoogle.Instance.decrementBuildingPlatformCount();
         }
+
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.decrementBuildingPlatformCount();
+        }
     }
 
     private void CreateButton()

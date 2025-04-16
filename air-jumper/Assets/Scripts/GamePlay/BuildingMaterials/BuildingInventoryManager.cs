@@ -62,6 +62,11 @@ public class BuildingInventoryManager : MonoBehaviour
                 SendToGoogle.Instance?.incrementBuildingPlatformCount();
             }
 
+            if (SendAnalytics.Instance != null)
+            {
+                SendAnalytics.Instance?.incrementBuildingPlatformCount();
+            }
+
             // Decrease the material count
             materials[material] -= amount;
             OnMaterialUpdated?.Invoke(material, materials[material]);
