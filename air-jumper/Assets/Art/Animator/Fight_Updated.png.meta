@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 230
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,7 +108,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fight_Updated_0
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 390
+        width: 360
+        height: 490
+      alignment: 9
+      pivot: {x: 0.48, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d31c2572ae37243a5935b4ff7ba1d1
+      internalID: -408696625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fight_Updated_2
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 390
+        width: 535
+        height: 490
+      alignment: 9
+      pivot: {x: 0.38, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0634a0a3c2495114db71319f94225a3d
+      internalID: 2106435236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fight_Updated_5
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 390
+        width: 330
+        height: 490
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf0d616069649c448c7190e177b1a5d
+      internalID: -438694366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +182,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fight_Updated_0: -408696625
+      Fight_Updated_1: -19438620
+      Fight_Updated_10: -1177281415
+      Fight_Updated_2: 2106435236
+      Fight_Updated_3: 190369253
+      Fight_Updated_4: 2010176078
+      Fight_Updated_5: -438694366
+      Fight_Updated_6: -812886649
+      Fight_Updated_7: -714458000
+      Fight_Updated_8: -2076255754
+      Fight_Updated_9: 748109811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

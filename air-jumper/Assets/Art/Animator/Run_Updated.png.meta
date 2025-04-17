@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Run_Updated_0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 691
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a656f0c9eecbae4479f5a80c6d2f4268
+      internalID: 1595176537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_1
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 691
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baea2152754cc2244b5d3fb90ab46ed2
+      internalID: 545893660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_2
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 691
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4eeae7622222ac489bdb1b562a7b613
+      internalID: 1184610555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_3
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 691
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63e53e54837e54e44b00022f5c0ce843
+      internalID: -1942376713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_6
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 60
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6cd97ff6c555e64bacf5867dc74665c
+      internalID: 667935979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_7
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 60
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b8c32e657b943408ebe9765592bb43
+      internalID: -1029636906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_8
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 60
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020623040a06c134a952a453a910fa02
+      internalID: -365091000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_Updated_9
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 60
+        width: 300
+        height: 493
+      alignment: 9
+      pivot: {x: 0.53, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ccb514dc3e6724bae1ded2d792dd2a
+      internalID: 1996975475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +287,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Run_Updated_0: 1595176537
+      Run_Updated_1: 545893660
+      Run_Updated_10: 2076442720
+      Run_Updated_11: 1528171036
+      Run_Updated_12: 1923522993
+      Run_Updated_2: 1184610555
+      Run_Updated_3: -1942376713
+      Run_Updated_4: -1105448015
+      Run_Updated_5: -71670504
+      Run_Updated_6: 667935979
+      Run_Updated_7: -1029636906
+      Run_Updated_8: -365091000
+      Run_Updated_9: 1996975475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
