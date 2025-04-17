@@ -3709,6 +3709,78 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.ctime0
+      value: 13107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.ctime1
+      value: 26214
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.ctime2
+      value: 39321
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.ctime3
+      value: 52428
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.ctime4
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key0.g
+      value: 0.05583444
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key1.g
+      value: 0.2509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key1.r
+      value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key2.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key2.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key3.g
+      value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key3.r
+      value: 0.2509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key4.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.key4.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: gradient.m_NumColorKeys
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
