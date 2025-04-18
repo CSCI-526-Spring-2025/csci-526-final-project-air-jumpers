@@ -15,7 +15,7 @@ public class ControlPanelOpacity : MonoBehaviour, IPointerEnterHandler, IPointer
             image = gameObject.GetComponent<Image>();
         }
         Color color = image.color;
-        color.a = 0.9f;
+        color.a = 0.8f;
         image.color = color;
     }
 
