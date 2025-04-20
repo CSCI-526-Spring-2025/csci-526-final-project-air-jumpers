@@ -3446,6 +3446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 516055384745662848, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e6d0b8db0afe943d98d6db9361ee92fd, type: 2}
     - target: {fileID: 565750645515685694, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: collectibleNum
       value: 3
@@ -3506,6 +3510,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.0027549565
       objectReference: {fileID: 0}
+    - target: {fileID: 4162839178329018029, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e6d0b8db0afe943d98d6db9361ee92fd, type: 2}
     - target: {fileID: 5721227622939692638, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
