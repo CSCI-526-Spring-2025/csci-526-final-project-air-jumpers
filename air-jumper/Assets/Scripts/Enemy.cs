@@ -125,6 +125,11 @@ public class Enemy : MonoBehaviour
             {
                 SendToGoogle.Instance.RecordHealthAfterKill(playerHealth.GetPlayerHealth());
             }
+
+            if (SendAnalytics.Instance != null)
+            {
+                SendAnalytics.Instance.RecordHealthAfterKill(playerHealth.GetPlayerHealth());
+            }
         }
 
         Destroy(gameObject);

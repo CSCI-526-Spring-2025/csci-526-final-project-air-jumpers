@@ -46,6 +46,11 @@ public class BuildingPlatformManager : MonoBehaviour
         {
             SendToGoogle.Instance.decrementBuildingPlatformCount();
         }
+
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.decrementBuildingPlatformCount();
+        }
     }
 
     private void CreateButton()
@@ -81,7 +86,7 @@ public class BuildingPlatformManager : MonoBehaviour
 
             TextMeshProUGUI textInstance = text.AddComponent<TextMeshProUGUI>();
             textInstance.text = "redo";
-            textInstance.color = Color.black;
+            textInstance.color = Color.white;
             textInstance.alignment = TextAlignmentOptions.Center;
             textInstance.fontSize = 0.5f;
         }
