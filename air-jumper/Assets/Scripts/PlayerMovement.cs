@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 1f;
     public GameObject platformPrefab;
-    public TextMeshProUGUI platformCounterText;
     public int initPlatformCount = 1;
 
     private Rigidbody2D rb;
@@ -30,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private float dashInterval = 0.2f;
     private float lastTapTimeA = 0;
     private float lastTapTimeD = 0;
-    private Vector3 startPosition;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -55,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
         UpdatePlatformCounter();
 
         // StartTime(); // Start the game timer
-        startPosition = transform.position;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -131,6 +128,11 @@ public class PlayerMovement : MonoBehaviour
                 SendToGoogle.Instance.IncrementPlayerJumpCount();
             }
 
+            if (SendAnalytics.Instance != null)
+            {
+                SendAnalytics.Instance.IncrementPlayerJumpCount();
+            }
+
 
             if (jumpTimes == 0)
             {
@@ -171,6 +173,11 @@ public class PlayerMovement : MonoBehaviour
             SendToGoogle.Instance.incrementRegularPlatformCount();
         }
 
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.incrementRegularPlatformCount();
+        }
+
         if (platformCount == 0)
         {
             FindObjectOfType<GameOverManager>().StartGameOverTimer();
@@ -179,10 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdatePlatformCounter()
     {
-        if (platformCounterText != null)
-        {
-            platformCounterText.text = "Platforms: " + platformCount;
-        }
+        FindObjectOfType<PlatformIcon>()?.SetPlatformCount(platformCount);
     }
 
     private bool CheckIsOnUpperSideOfPlatform(Collision2D collision)
@@ -329,6 +333,14 @@ public class PlayerMovement : MonoBehaviour
             SendToGoogle.Instance.SetIsCurrentWin(true);
             // Send the analytics for the same user after game over
             SendToGoogle.Instance.Send();
+        }
+
+        if (SendAnalytics.Instance != null)
+        {
+            // Update the win status
+            SendAnalytics.Instance.SetIsCurrentWin(true);
+            // Send the analytics for the same user after game over
+            SendAnalytics.Instance.Send();
         }
 
         //Advance to the next level

@@ -5,6 +5,14 @@ public class LevelSelectionMenu : MonoBehaviour
 {
     public GameObject levelSelectionPanel; 
 
+    private bool isMenuOpen = false;
+
+    public void ToggleLevelSelection()
+    {
+        isMenuOpen = !isMenuOpen;
+        levelSelectionPanel.SetActive(isMenuOpen);
+    }
+
     private void Start()
     {
         levelSelectionPanel.SetActive(false); 
@@ -17,6 +25,7 @@ public class LevelSelectionMenu : MonoBehaviour
 
     public void CloseLevelSelection()
     {
+        isMenuOpen = false;
         levelSelectionPanel.SetActive(false);
     }
 

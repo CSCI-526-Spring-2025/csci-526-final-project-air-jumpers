@@ -74,6 +74,11 @@ public class PlayerHealth : MonoBehaviour
             SendToGoogle.Instance.incrementGameOverCount();
         }
 
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.incrementGameOverCount();
+        }
+
         // New respawn logic has been added here
         FindObjectOfType<PlayerMovement>().Respawn();
         currentHealth = maxHealth;

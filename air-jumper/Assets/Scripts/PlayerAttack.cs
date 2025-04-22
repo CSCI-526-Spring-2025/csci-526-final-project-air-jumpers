@@ -11,12 +11,14 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayer;
     private bool facingRight = true;
-    public ParticleSystem attackEffect;
+    public Animator animator;
 
     [Header("Gun Controls")]
     public GameObject bulletPrefab;
     public bool isGunInUse = false;
     public float bulletSpeed = 10f;
+
+    private bool isAttacking;
 
     void Update()
     {
@@ -24,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (!isGunInUse)
             {
+                animator.SetTrigger("Attack");
                 Attack();
             }
             else
@@ -55,13 +58,13 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
-        lastAttackTime = Time.time;
+        if (isAttacking) return;
 
-        if (attackEffect != null)
-        {
-            attackEffect.Play();
-        }
-
+        isAttacking = true;
+        animator.SetTrigger("Attack");
+    }
+    public void PerformHitboxCheck()
+    {
         Vector2 attackPosition = attackPoint.position;
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackPosition, attackSize, 0, enemyLayer);
 
@@ -76,6 +79,11 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 
 

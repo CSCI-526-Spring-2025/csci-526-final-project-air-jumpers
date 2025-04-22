@@ -39,7 +39,8 @@ public class newCheckpointManager : MonoBehaviour
         if (!alreadyVisited)
         {
             // Calculate the current time relative to the level start
-            float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime();
+            // float currentTime = Time.time - SendToGoogle.Instance.GetLevelStartTime();
+            float currentTime = Time.time - SendAnalytics.Instance.GetLevelStartTime();
             float timeSinceLastCheckpoint = 0f;
             int jumpsSinceLastCheckpoint = 0;
 
@@ -49,17 +50,20 @@ public class newCheckpointManager : MonoBehaviour
                 // For subsequent checkpoints
                 CheckpointData lastCheckpoint = visitedCheckpoints[^1];
                 timeSinceLastCheckpoint = currentTime - lastCheckpoint.TimeReached;
-                jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount() - lastCheckpoint.TotalJumps;
+                // jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount() - lastCheckpoint.TotalJumps;
+                jumpsSinceLastCheckpoint = SendAnalytics.Instance.GetJumpCount() - lastCheckpoint.TotalJumps;
             }
             else
             {
                 // For the first checkpoint
                 timeSinceLastCheckpoint = currentTime; // Time since level start
-                jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount(); // Total jumps since level start
+                // jumpsSinceLastCheckpoint = SendToGoogle.Instance.GetJumpCount(); // Total jumps since level start
+                jumpsSinceLastCheckpoint = SendAnalytics.Instance.GetJumpCount(); // Total jumps since level start
             }
 
             // Get the total number of jumps from PlayerMovement
-            int totalJumps = SendToGoogle.Instance.GetJumpCount();
+            // int totalJumps = SendToGoogle.Instance.GetJumpCount();
+            int totalJumps = SendAnalytics.Instance.GetJumpCount();
 
             // Create a new CheckpointData object and add it to the list
             var checkpoint = new CheckpointData(

@@ -74,6 +74,11 @@ public class GameOverManager : MonoBehaviour
         {
             SendToGoogle.Instance.Send();
         }
+
+        if (SendAnalytics.Instance != null)
+        {
+            SendAnalytics.Instance.Send();
+        }
     }
 
     public void StopTimer()
