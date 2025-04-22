@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class KeyHintSprite : MonoBehaviour
 {
-    public GameObject keyHints; // ������ʾ�� GameObject ������
+    public GameObject keyHints;
     public string currentLevel;
     void Start()
     {
-        // 5 �������
         if (currentLevel == "Tutorial1")
         {
             keyHints.SetActive(true);
@@ -20,6 +19,6 @@ public class KeyHintSprite : MonoBehaviour
 
     void HideHints()
     {
-        keyHints.SetActive(false);
+        keyHints?.SetActive(false);
     }
 }
