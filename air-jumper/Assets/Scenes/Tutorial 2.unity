@@ -4114,6 +4114,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721123242377499542, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
+      propertyPath: m_text
+      value: Help
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721123242377499542, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 36589f839bac3fe4cbcbc0c6043e9cbc, type: 2}
@@ -4124,6 +4128,12 @@ PrefabInstance:
     - target: {fileID: 6721123242377499542, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066250786692040242, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
+      propertyPath: m_text
+      value: 'H
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8874550305144186517, guid: 1dfe3ee984848ae42b0be51735f4cea4, type: 3}
       propertyPath: m_Name
