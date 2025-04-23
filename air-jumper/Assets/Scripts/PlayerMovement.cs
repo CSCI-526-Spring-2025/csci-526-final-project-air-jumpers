@@ -119,6 +119,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((isGrounded || isOnPlatform || (jumpTimes > 0)) && Input.GetKeyDown(KeyCode.W))
         {
+            bool isDoubleJump = !isGrounded && !isOnPlatform && jumpTimes == 1;
+            if (isDoubleJump)
+            {
+                animator?.SetTrigger("DoubleJump");
+            }
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
 
