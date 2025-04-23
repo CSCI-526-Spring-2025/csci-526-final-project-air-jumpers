@@ -1947,6 +1947,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &341131139 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3126241308820622150, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+  m_PrefabInstance: {fileID: 1782057032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &353138230
 GameObject:
   m_ObjectHideFlags: 0
@@ -11583,9 +11588,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: e6d0b8db0afe943d98d6db9361ee92fd, type: 2}
     - target: {fileID: 565750645515685694, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 341131139}
+    - target: {fileID: 565750645515685694, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: collectibleNum
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1362801110522543702, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1782057033}
     - target: {fileID: 1362801110522543702, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: collectibleNum
       value: 3
@@ -11650,6 +11663,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1984617836, guid: 0a4034616f3684c4b981bdf58c4c9500, type: 3}
+    - target: {fileID: 3126241308820622150, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 44079a0206e8aad4a8fad515dffa73eb, type: 2}
     - target: {fileID: 3126805548773176695, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: keyHints
       value: 
@@ -11666,6 +11683,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: e6d0b8db0afe943d98d6db9361ee92fd, type: 2}
+    - target: {fileID: 4490920872826829358, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a7fc5a9acd95ef24ea2199c6f66ce345, type: 2}
     - target: {fileID: 4896980684119157098, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -11867,6 +11888,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 491314907}
   m_SourcePrefab: {fileID: 100100000, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+--- !u!95 &1782057033 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4490920872826829358, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+  m_PrefabInstance: {fileID: 1782057032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1786750940
 PrefabInstance:
   m_ObjectHideFlags: 0

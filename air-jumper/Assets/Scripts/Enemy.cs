@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     public Transform spriteRoot;
 
+    public Animator animator;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -103,6 +105,11 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Hurt");
+        }
         if (currentHealth <= 0)
         {
             Die();
