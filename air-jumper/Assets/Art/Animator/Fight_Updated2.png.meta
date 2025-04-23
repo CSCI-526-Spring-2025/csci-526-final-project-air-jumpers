@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 230
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fight_Updated2_0
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 390
+        width: 367
+        height: 500
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 085ccdfa29d086f468e26ccc24f0d9f8
+      internalID: -1955958466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fight_Updated2_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 390
+        width: 598
+        height: 500
+      alignment: 9
+      pivot: {x: 0.3, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b80b0a3750cd4de43a35e2b345ec183c
+      internalID: -1954059783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fight_Updated2_3
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 390
+        width: 330
+        height: 500
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc71f29195b8484d967af2dd5853a2b
+      internalID: 1882383462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +182,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fight_Updated2_0: -1955958466
+      Fight_Updated2_1: -1954059783
+      Fight_Updated2_10: -563809151
+      Fight_Updated2_11: -663785664
+      Fight_Updated2_12: -992819889
+      Fight_Updated2_13: -1538191076
+      Fight_Updated2_14: -240508119
+      Fight_Updated2_2: 980062329
+      Fight_Updated2_3: 1882383462
+      Fight_Updated2_4: 700534405
+      Fight_Updated2_5: -1432632688
+      Fight_Updated2_6: -1218955822
+      Fight_Updated2_7: -90392737
+      Fight_Updated2_8: 516109372
+      Fight_Updated2_9: 1437928965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

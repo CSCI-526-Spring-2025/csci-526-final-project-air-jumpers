@@ -17011,6 +17011,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3191375912331500709, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.194
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191375912331500709, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 4373950618686558543, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: winText
       value: 
@@ -17742,6 +17750,18 @@ PrefabInstance:
     - target: {fileID: 358340930222165731, guid: dfe0ff1c921984630980d4159ebd1afc, type: 3}
       propertyPath: m_Name
       value: CollectiblePlatform1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360779333876932513, guid: dfe0ff1c921984630980d4159ebd1afc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 271d0aceebeed5c4e8ef5428f03d7f1c, type: 3}
+    - target: {fileID: 8760901816484162378, guid: dfe0ff1c921984630980d4159ebd1afc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760901816484162378, guid: dfe0ff1c921984630980d4159ebd1afc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8760901816484162378, guid: dfe0ff1c921984630980d4159ebd1afc, type: 3}
       propertyPath: m_LocalPosition.x
