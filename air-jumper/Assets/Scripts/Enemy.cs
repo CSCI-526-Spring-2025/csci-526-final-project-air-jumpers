@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour
     public int collectibleNum = 3;
 
     private Vector3 startPos;
+
+    public Transform spriteRoot;
 
     void Start()
     {
@@ -88,6 +91,12 @@ public class Enemy : MonoBehaviour
     private void Flip()
     {
         direction *= -1;
+        if (spriteRoot != null)
+        {
+            Vector3 scale = spriteRoot.localScale;
+            scale.x = Mathf.Abs(scale.x) * direction;
+            spriteRoot.localScale = scale;
+        }
     }
 
 

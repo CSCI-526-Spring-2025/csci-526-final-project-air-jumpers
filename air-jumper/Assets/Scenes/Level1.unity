@@ -8199,7 +8199,7 @@ Transform:
   m_GameObject: {fileID: 1369733204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.395288, y: -13.7292795, z: -10}
+  m_LocalPosition: {x: -0.40446234, y: -13.7292795, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9712,7 +9712,7 @@ Transform:
   m_GameObject: {fileID: 1507712729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.7897124, y: -5.0227213, z: 0}
+  m_LocalPosition: {x: -7.780538, y: -5.0227213, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11646,6 +11646,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.015686275
       objectReference: {fileID: 0}
+    - target: {fileID: 2633032255242641324, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1984617836, guid: 0a4034616f3684c4b981bdf58c4c9500, type: 3}
     - target: {fileID: 3126805548773176695, guid: 007cddaa940654dfca8e3e897e859902, type: 3}
       propertyPath: keyHints
       value: 
