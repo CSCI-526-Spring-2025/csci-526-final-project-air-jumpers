@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eef7e76ef00af84c8287457f67c0ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSize: {x: 1, y: 1}
+  attackSize: {x: 1.8, y: 1}
   attackCooldown: 0.5
   attackDamage: 40
   attackPoint: {fileID: 3191375912331500709}
