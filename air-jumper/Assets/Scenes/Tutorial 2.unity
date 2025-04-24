@@ -1017,6 +1017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3905333678907482197, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6763565090512662951, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5090,7 +5094,7 @@ Transform:
   m_GameObject: {fileID: 1369733204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3733158, y: -12.730289, z: -10}
+  m_LocalPosition: {x: 1.3833237, y: -12.730289, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6703,7 +6707,7 @@ Transform:
   m_GameObject: {fileID: 1768279063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.313315, y: -5.99971, z: 0}
+  m_LocalPosition: {x: -10.323323, y: -5.99971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
