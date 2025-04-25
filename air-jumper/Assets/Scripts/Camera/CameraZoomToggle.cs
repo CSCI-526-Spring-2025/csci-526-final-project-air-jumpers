@@ -9,7 +9,7 @@ public class CameraZoomToggle : MonoBehaviour
     public float zoomedFOV = 40f;
     public float zoomDuration = 0.5f;
     public float holdDuration = 3f;
-
+    
     private float originalSize;
     private float originalFOV;
     private Coroutine zoomCoroutine;
@@ -17,6 +17,15 @@ public class CameraZoomToggle : MonoBehaviour
 
     void Start()
     {
+        isZooming = true;
+
+        StartCoroutine(DelayedStart());
+    }
+
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(0.3f);
+
         if (virtualCamera.m_Lens.Orthographic)
         {
             originalSize = virtualCamera.m_Lens.OrthographicSize;
@@ -25,6 +34,8 @@ public class CameraZoomToggle : MonoBehaviour
         {
             originalFOV = virtualCamera.m_Lens.FieldOfView;
         }
+
+        isZooming = false;
     }
 
     void Update()

@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
                 TextMeshPro tmp = tutorial.GetComponent<TextMeshPro>();
                 if (tmp != null)
                 {
-                    tmp.text = "Drag from the buttom dock panel to create a Double Jump Platform ¡ý";
+                    tmp.text = "Drag from the buttom dock panel to create a\nDouble Jump Platform ¡ý";
                 }
             }
         }
@@ -92,7 +92,7 @@ public class TutorialManager : MonoBehaviour
                     tmp.color = Color.white;
                     tmp.alignment = TextAlignmentOptions.Center;
 
-                    tmp.transform.position = pos + new Vector3(0, 2.5f, 0);
+                    tmp.transform.position = pos + new Vector3(-2.5f, 2.5f, 0);
                 }
             }
         }
