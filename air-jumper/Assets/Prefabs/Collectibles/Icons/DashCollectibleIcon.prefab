@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39690464872769657}
   - component: {fileID: -3314103466778526833}
+  - component: {fileID: 8833327983388209397}
   m_Layer: 0
   m_Name: DashCollectibleIcon
   m_TagString: Untagged
@@ -78,6 +79,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6060708, y: 1.2162364}
   m_EdgeRadius: 0
+--- !u!114 &8833327983388209397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336038137451216312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db61fe84c2c647f4381abf13f9be3bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  speed: 2
 --- !u!1 &7958305173175059958
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5ab635938526482429dd67b9346f11fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
