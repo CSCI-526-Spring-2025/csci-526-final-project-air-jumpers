@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private PlayerHealth playerHealth;
 
 
     /*
@@ -316,6 +317,15 @@ public class PlayerMovement : MonoBehaviour
 
             Destroy(collision.gameObject);
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+        }
+
+        if(collision.CompareTag("Health"))
+        {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            playerHealth.currentHealth=Math.Min(playerHealth.currentHealth+25, playerHealth.maxHealth);
+            GameObject healthBar = GameObject.Find("HealthCollectible");
+            GameObject.Destroy(healthBar);
+            
         }
     }
 
