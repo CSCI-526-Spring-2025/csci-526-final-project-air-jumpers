@@ -7391,6 +7391,7 @@ GameObject:
   - component: {fileID: 1904465406}
   - component: {fileID: 1904465409}
   - component: {fileID: 1904465408}
+  - component: {fileID: 1904465410}
   m_Layer: 0
   m_Name: HealthCollectible
   m_TagString: Health
@@ -7537,6 +7538,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1904465410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904465405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db61fe84c2c647f4381abf13f9be3bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  speed: 2
 --- !u!95 &1931715623 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3236421366680815063, guid: 3c75ae5ff21ab8f4986e858167c3a9e2, type: 3}
