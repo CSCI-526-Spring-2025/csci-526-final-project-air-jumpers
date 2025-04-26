@@ -5,8 +5,6 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
-    public GameObject tutorialImage;
-    private bool isTutorialActive = false;
 
     private Dictionary<CollectibleType, bool> hasTutorialShown = new Dictionary<CollectibleType, bool>();
     public string currentLevel = "";
@@ -95,29 +93,6 @@ public class TutorialManager : MonoBehaviour
                     tmp.transform.position = pos + new Vector3(-2.5f, 2.5f, 0);
                 }
             }
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ToggleTutorial();
-        }
-    }
-
-    void ToggleTutorial()
-    {
-        isTutorialActive = !isTutorialActive;
-        tutorialImage.SetActive(isTutorialActive);
-
-        if (isTutorialActive)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
         }
     }
 }

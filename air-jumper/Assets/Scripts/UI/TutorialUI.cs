@@ -49,10 +49,11 @@ public class MainUIController : MonoBehaviour
 
     IEnumerator WaitAndClose()
     {
+        Time.timeScale = 1f;
+
         yield return new WaitForSecondsRealtime(2f); ; 
         mainUI.SetActive(false);
         animator.SetBool("isClosing", false); 
         isUIOpen = false;
-        Time.timeScale = 1f;
     }
 }
