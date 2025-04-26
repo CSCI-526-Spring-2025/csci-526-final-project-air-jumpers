@@ -11,7 +11,8 @@ public class LaserButton : MonoBehaviour
     [Header("UI CountDown")]
     public TextMeshProUGUI countdownText;
 
-    private bool isUsed = false;
+    // private bool isUsed = false;
+    private Coroutine countdownCoroutine;
 
     private void Start()
     {
@@ -22,13 +23,22 @@ public class LaserButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isUsed && collision.CompareTag("Player"))
-            StartCoroutine(DisableLaserTemporarily());
+        // if (!isUsed && collision.CompareTag("Player"))
+        //     StartCoroutine(DisableLaserTemporarily());
+        if (collision.CompareTag("Player"))
+        {
+            if (countdownCoroutine != null)
+            {
+                StopCoroutine(countdownCoroutine);
+            }
+
+            countdownCoroutine = StartCoroutine(DisableLaserTemporarily());
+        }
     }
 
     private IEnumerator DisableLaserTemporarily()
     {
-        isUsed = true;
+        // isUsed = true;
 
         if (targetLaser != null)
             targetLaser.TurnOff();
@@ -52,7 +62,8 @@ public class LaserButton : MonoBehaviour
         if (targetLaser != null)
             targetLaser.TurnOn();
 
-        isUsed = false;
+        // isUsed = false;
+        countdownCoroutine = null;
     }
 }
 

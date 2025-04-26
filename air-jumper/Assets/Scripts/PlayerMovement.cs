@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private PlayerHealth playerHealth;
 
 
     /*
@@ -59,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         MovePlayer();
         Jump();
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && !isOnPlatform && platformCount > 0)
@@ -119,6 +125,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((isGrounded || isOnPlatform || (jumpTimes > 0)) && Input.GetKeyDown(KeyCode.W))
         {
+            bool isDoubleJump = !isGrounded && !isOnPlatform && jumpTimes == 1;
+            if (isDoubleJump)
+            {
+                animator?.SetTrigger("DoubleJump");
+            }
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpTimes -= 1;
 
@@ -311,6 +322,15 @@ public class PlayerMovement : MonoBehaviour
 
             Destroy(collision.gameObject);
             FindObjectOfType<GameOverManager>().CancelGameOverTimer();
+        }
+
+        if(collision.CompareTag("Health"))
+        {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            playerHealth.currentHealth=Math.Min(playerHealth.currentHealth+25, playerHealth.maxHealth);
+            GameObject healthBar = GameObject.Find("HealthCollectible");
+            GameObject.Destroy(healthBar);
+            
         }
     }
 
