@@ -1264,7 +1264,7 @@ Transform:
   m_GameObject: {fileID: 239557462}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.8916206, y: -3.9397106, z: 0}
+  m_LocalPosition: {x: -5.89776, y: -3.9397106, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5035,7 +5035,7 @@ Transform:
   m_GameObject: {fileID: 1369733204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1883793, y: -14.730289, z: -10}
+  m_LocalPosition: {x: -2.18224, y: -14.730289, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6884,6 +6884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1775907488}
   - component: {fileID: 1775907489}
+  - component: {fileID: 1775907490}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -6921,6 +6922,20 @@ MonoBehaviour:
   mainUI: {fileID: 1249930109}
   animator: {fileID: 1249930113}
   closeButton: {fileID: 992333180}
+--- !u!114 &1775907490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775907486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074a01c0ebaf205468a398ca42868266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialImage: {fileID: 0}
+  currentLevel: Tutorial1
 --- !u!1 &1797905823
 GameObject:
   m_ObjectHideFlags: 0
