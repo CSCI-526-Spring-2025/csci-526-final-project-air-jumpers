@@ -105,7 +105,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
 
             if (renderer != null)
             {
-                renderer.sortingOrder = 0;
+                renderer.sortingOrder = 10000;
             }
         }
         else
