@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 public class BuildScript
 {
-    public static string tagPrefix = "golden";
+    public static string tagPrefix = "golden-final";
 
     private static string repoRoot = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName;
 
