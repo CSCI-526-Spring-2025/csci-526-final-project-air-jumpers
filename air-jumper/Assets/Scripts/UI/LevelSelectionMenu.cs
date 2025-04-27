@@ -10,12 +10,25 @@ public class LevelSelectionMenu : MonoBehaviour
     public void ToggleLevelSelection()
     {
         isMenuOpen = !isMenuOpen;
+        if (isMenuOpen)
+        {
+            FindObjectOfType<MainUIController>()?.ClosePanel();
+        }
+
         levelSelectionPanel.SetActive(isMenuOpen);
     }
 
     private void Start()
     {
-        levelSelectionPanel.SetActive(false); 
+        levelSelectionPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseLevelSelection();
+        }
     }
 
     public void OpenLevelSelection()
