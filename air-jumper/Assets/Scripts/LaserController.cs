@@ -1,19 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
-    public GameObject laserVisual; 
+    public List<GameObject> laserVisuals;
     public Collider2D laserCollider; 
 
     public void TurnOn()
     {
-        laserVisual.SetActive(true);
-        laserCollider.enabled = true;
+        foreach (var laser in laserVisuals)
+        {
+            if (laser != null)
+                laser.SetActive(true);
+        }
     }
 
     public void TurnOff()
     {
-        laserVisual.SetActive(false);
+        foreach (var laser in laserVisuals)
+        {
+            if (laser != null)
+                laser.SetActive(false);
+        }
         laserCollider.enabled = false;
     }
 }
