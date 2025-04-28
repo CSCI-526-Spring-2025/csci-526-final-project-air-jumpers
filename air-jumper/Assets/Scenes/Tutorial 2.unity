@@ -1867,7 +1867,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &633877445
 RectTransform:
@@ -2222,7 +2222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920967030313157331, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: m_SortingOrder
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4366,7 +4366,7 @@ Transform:
   m_GameObject: {fileID: 1369733204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3659477, y: -12.730289, z: -10}
+  m_LocalPosition: {x: 1.3733158, y: -12.730289, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5848,7 +5848,7 @@ Transform:
   m_GameObject: {fileID: 1768279063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.305947, y: -5.99971, z: 0}
+  m_LocalPosition: {x: -10.313315, y: -5.99971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
