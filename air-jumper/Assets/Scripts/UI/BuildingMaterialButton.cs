@@ -95,7 +95,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
                 Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), blockInstance.GetComponent<Collider2D>(), false);
             }
 
-            SpriteRenderer renderer = blockInstance.GetComponent<SpriteRenderer>();
+            SpriteRenderer renderer = blockInstance.GetComponentInChildren<SpriteRenderer>();
 
             BuildingPlatformManager canceler = blockInstance.AddComponent<BuildingPlatformManager>();
             canceler.materialInstance = buildingBlock;
@@ -105,7 +105,7 @@ public class BuildingMaterialButton : MonoBehaviour, IBeginDragHandler, IDragHan
 
             if (renderer != null)
             {
-                renderer.sortingOrder = 10000;
+                renderer.sortingOrder = 1;
             }
         }
         else
