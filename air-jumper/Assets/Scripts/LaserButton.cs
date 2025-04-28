@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using System.Collections;
 
@@ -11,20 +11,24 @@ public class LaserButton : MonoBehaviour
     [Header("UI CountDown")]
     public TextMeshProUGUI countdownText;
 
-    // private bool isUsed = false;
+    [Header("Button Sprites")]
+    public SpriteRenderer buttonSpriteRenderer; // ⭐ 新加的
+    public Sprite normalSprite; // ⭐ 按钮未按下的图
+    public Sprite pressedSprite; // ⭐ 按钮被按下的图
+
     private Coroutine countdownCoroutine;
 
     private void Start()
     {
-        //hide text at first
         if (countdownText != null)
             countdownText.gameObject.SetActive(false);
+
+        if (buttonSpriteRenderer != null && normalSprite != null)
+            buttonSpriteRenderer.sprite = normalSprite; // ⭐ 初始显示正常的Sprite
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // if (!isUsed && collision.CompareTag("Player"))
-        //     StartCoroutine(DisableLaserTemporarily());
         if (collision.CompareTag("Player"))
         {
             if (countdownCoroutine != null)
@@ -32,14 +36,16 @@ public class LaserButton : MonoBehaviour
                 StopCoroutine(countdownCoroutine);
             }
 
+            // ⭐ 切换到按下的Sprite
+            if (buttonSpriteRenderer != null && pressedSprite != null)
+                buttonSpriteRenderer.sprite = pressedSprite;
+
             countdownCoroutine = StartCoroutine(DisableLaserTemporarily());
         }
     }
 
     private IEnumerator DisableLaserTemporarily()
     {
-        // isUsed = true;
-
         if (targetLaser != null)
             targetLaser.TurnOff();
 
@@ -62,8 +68,10 @@ public class LaserButton : MonoBehaviour
         if (targetLaser != null)
             targetLaser.TurnOn();
 
-        // isUsed = false;
+        // ⭐ 倒计时结束，切回正常Sprite（可选，如果你想让按钮恢复外观）
+        if (buttonSpriteRenderer != null && normalSprite != null)
+            buttonSpriteRenderer.sprite = normalSprite;
+
         countdownCoroutine = null;
     }
 }
-
