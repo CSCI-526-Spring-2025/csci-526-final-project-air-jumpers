@@ -37,6 +37,20 @@ public class MainUIController : MonoBehaviour
                 isUIOpen = true;
 
                 Time.timeScale = 0f;
+
+                FindObjectOfType<LevelSelectionMenu>()?.CloseLevelSelection();
+            }
+            else
+            {
+                ClosePanel();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isUIOpen)
+            {
+                ClosePanel();
             }
         }
     }
@@ -54,6 +68,13 @@ public class MainUIController : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f); ; 
         mainUI.SetActive(false);
         animator.SetBool("isClosing", false); 
+        isUIOpen = false;
+    }
+
+    public void ClosePanel()
+    {
+        Time.timeScale = 1f;
+        mainUI.SetActive(false);
         isUIOpen = false;
     }
 }
