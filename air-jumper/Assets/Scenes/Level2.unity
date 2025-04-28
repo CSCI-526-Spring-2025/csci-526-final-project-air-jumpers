@@ -19220,7 +19220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920967030313157331, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: m_SortingOrder
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8122752966820505186, guid: 6ef2b049a2923c14987c9cf4fc325902, type: 3}
       propertyPath: gradient.ctime0
