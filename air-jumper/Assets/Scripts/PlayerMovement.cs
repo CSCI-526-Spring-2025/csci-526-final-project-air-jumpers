@@ -362,6 +362,21 @@ public class PlayerMovement : MonoBehaviour
             // Send the analytics for the same user after game over
             SendAnalytics.Instance.Send();
         }
+        GameObject finalEndObject = GameObject.Find("Finalend"); 
+        Sprite finalEndWinSprite = Resources.Load<Sprite>("Finalend_win"); 
+
+        if (finalEndObject != null && finalEndWinSprite != null)
+        {
+            SpriteRenderer sr = finalEndObject.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sprite = finalEndWinSprite;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Finalend or Finalend_win not found!");
+        }
 
         //Advance to the next level
         LoadNextSceneAsync();
